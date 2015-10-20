@@ -30,6 +30,9 @@ TARGET_NO_BOOTLOADER := true
 
 # Build
 TARGET_USES_BLOCK_BASED_OTA := false
+WITH_DEXPREOPT_BOOT_IMG_ONLY ?= false
+WITH_DEXPREOPT := false
+DONT_DEXPREOPT_PREBUILTS := true
 
 # Platform
 TARGET_BOARD_PLATFORM := exynos5
@@ -139,23 +142,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 # SELinux
 BOARD_SEPOLICY_DIRS += \
     device/samsung/i9500/sepolicy
-
-BOARD_SEPOLICY_UNION := \
-    bluetooth.te \
-    device.te \
-    drmserver.te \
-    file_contexts \
-    file.te \
-    gpsd.te \
-    mediaserver.te \
-    property_contexts \
-    property.te \
-    pvrsrvctl.te \
-    rild.te \
-    shell.te \
-    system_server.te \
-    ueventd.te \
-    wpa.te
 
 # TWRP Specific
 BOARD_HAS_NO_REAL_SDCARD := true
