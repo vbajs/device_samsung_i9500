@@ -32,7 +32,6 @@ on init
 on fs
     mount_all /fstab.universal5410
 
-    setprop ro.crypto.fuse_sdcard true
     setprop ro.build.product universal_5410
     setprop ro.product.device universal_5410
     
