@@ -91,9 +91,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
+# Shouldn't be required on Android M
+## Doze
+##PRODUCT_PACKAGES += \
+##    SamsungDoze
 
 # FileSystem
 PRODUCT_PACKAGES += \
