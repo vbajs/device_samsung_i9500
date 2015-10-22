@@ -1,4 +1,6 @@
 <mixer>
+    <!-- This file has been roughly translated from tinyucm.conf -->
+
     <!-- ########## Initial mixer settings ########## -->
 
     <ctl name="Speaker Digital Volume" value="128" />
@@ -1517,10 +1519,6 @@
 
         <path name="scenario-two-mic-headphones-incall-nb" />
         <path name="volume-two-mic-incall" />
-        <!-- TODO -->
-        <!--
-        <path name="param-builtin-mic-earpiece-incall-nb" />
-        -->
     </path>
 
     <path name="voice-headphones-two-mic-wb">
@@ -1528,10 +1526,6 @@
 
         <path name="scenario-two-mic-headphones-incall-wb" />
         <path name="volume-two-mic-incall" />
-        <!-- TODO -->
-        <!--
-        <path name="param-builtin-mic-earpiece-incall-wb" />
-        -->
     </path>
 
     <path name="voice-rec-two-mic">

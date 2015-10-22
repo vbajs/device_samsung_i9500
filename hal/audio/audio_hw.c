@@ -1420,13 +1420,7 @@ static int out_set_volume(struct audio_stream_out *stream,
     struct stream_out *out = (struct stream_out *)stream;
     struct audio_device *adev = out->dev;
 
-    /* The mutex lock is not needed, because the client
-     * is not allowed to close the stream concurrently with this API
-     *  pthread_mutex_lock(&adev->lock_outputs);
-     */
-    bool is_HDMI = out == adev->outputs[OUTPUT_HDMI];
-    /*  pthread_mutex_unlock(&adev->lock_outputs); */
-    if (is_HDMI) {
+    if (out == adev->outputs[OUTPUT_HDMI]) {
         /* only take left channel into account: the API is for stereo anyway */
         out->muted = (left == 0.0f);
         return 0;
