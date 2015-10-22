@@ -204,7 +204,6 @@ struct audio_device {
     bool two_mic_control;
 
     int es325_preset;
-    int es325_new_mode;
     int es325_mode;
 
     int hdmi_drv_fd;    /* either an fd >= 0 or -1 */
@@ -462,14 +461,12 @@ static void select_devices(struct audio_device *adev)
 #endif
 
     new_route_id = (1 << (input_source_id + OUT_DEVICE_CNT)) + (1 << output_device_id);
-    if ((new_route_id == adev->cur_route_id) &&
-        (adev->es325_mode == adev->es325_new_mode)) {
+    if (new_route_id == adev->cur_route_id) {
         ALOGV("*** %s: Routing hasn't changed, leaving function.", __func__);
         return;
     }
 
     adev->cur_route_id = new_route_id;
-    adev->es325_mode = adev->es325_new_mode;
 
     if (input_source_id != IN_SOURCE_NONE) {
         if (output_device_id != OUT_DEVICE_NONE) {
@@ -1418,13 +1415,13 @@ static int out_get_render_position(const struct audio_stream_out *stream __unuse
 }
 
 static int out_add_audio_effect(const struct audio_stream *stream __unused,
-                                effect_handle_t effect __unused)
+                                effect_handle_t effect)
 {
     return 0;
 }
 
 static int out_remove_audio_effect(const struct audio_stream *stream __unused,
-                                   effect_handle_t effect __unused)
+                                   effect_handle_t effect)
 {
     return 0;
 }
@@ -1704,7 +1701,7 @@ static uint32_t in_get_input_frames_lost(struct audio_stream_in *stream __unused
 }
 
 static int in_add_audio_effect(const struct audio_stream *stream __unused,
-                               effect_handle_t effect __unused)
+                               effect_handle_t effect)
 {
     struct stream_in *in = (struct stream_in *)stream;
     effect_descriptor_t descr;
@@ -1723,7 +1720,7 @@ static int in_add_audio_effect(const struct audio_stream *stream __unused,
 }
 
 static int in_remove_audio_effect(const struct audio_stream *stream __unused,
-                                  effect_handle_t effect __unused)
+                                  effect_handle_t effect)
 {
     struct stream_in *in = (struct stream_in *)stream;
     effect_descriptor_t descr;
@@ -2183,8 +2180,7 @@ static int adev_open(const hw_module_t* module, const char* name,
      * selection is always applied by select_devices() */
 
     adev->es325_preset = ES325_PRESET_INIT;
-    adev->es325_new_mode = ES325_MODE_LEVEL;
-    adev->es325_mode = ES325_MODE_LEVEL;
+    adev->es325_mode = ES325_MODE_DEFAULT;
     adev->hdmi_drv_fd = -1;
 
     adev->mode = AUDIO_MODE_NORMAL;

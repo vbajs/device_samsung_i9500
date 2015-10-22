@@ -49,7 +49,7 @@ enum {
 
 enum {
     ES325_MODE_DEFAULT,
-    ES325_MODE_LEVEL,
+    ES325_MODE_DESKTOP,
     ES325_NUM_MODES
 };
 
