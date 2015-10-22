@@ -1043,6 +1043,16 @@
 
     <!-- ### Scenario ### -->
 
+    <path name="scenario-two-mic-earpiece-default">
+        <path name="scenario-builtin-mic-default" />
+        <path name="scenario-back-mic-default" />
+    </path>
+
+    <path name="scenario-two-mic-speaker-default">
+        <path name="scenario-builtin-mic-default" />
+        <path name="scenario-back-mic-default" />
+    </path>
+
     <path name="scenario-two-mic-earpiece-incall-nb">
         <path name="scenario-builtin-mic-earpiece-incall-nb" />
         <path name="scenario-back-mic-earpiece-incall-nb" />	  
@@ -1069,6 +1079,16 @@
         <path name="scenario-back-mic-speaker-incall-wb" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
+    </path>
+
+    <path name="scenario-two-mic-headphones-incall-nb">
+        <path name="scenario-builtin-mic-earpiece-incall-nb" />
+        <path name="scenario-back-mic-earpiece-incall-nb" />
+    </path>
+
+    <path name="scenario-two-mic-headphones-incall-wb">
+        <path name="scenario-builtin-mic-earpiece-incall-wb" />
+        <path name="scenario-back-mic-earpiece-incall-wb" />
     </path>
 
     <!-- ### Volume ### -->
@@ -1114,17 +1134,17 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-headset-in-enable">
+    <path name="device-headset-mic-enable">
         <ctl name="Headset Mic Switch" value="1" />
     </path>
 
-    <path name="device-headset-in-disable">
+    <path name="device-headset-mic-disable">
         <ctl name="Headset Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
 
-    <path name="scenario-headset-in-default">
+    <path name="scenario-headset-mic-default">
         <ctl name="HPOUT1L Input 3" value="None" />
         <ctl name="HPOUT1R Input 3" value="None" />
         <ctl name="LHPF1 Input 1" value="IN1R" />
@@ -1132,7 +1152,7 @@
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
-    <path name="scenario-headset-in-incall-nb">
+    <path name="scenario-headset-mic-incall-nb">
         <ctl name="HPOUT1L Input 3" value="IN1R" />
         <ctl name="HPOUT1R Input 3" value="IN1R" />
         <ctl name="LHPF1 Input 1" value="IN1R" />
@@ -1140,7 +1160,7 @@
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
-    <path name="scenario-headset-in-incall-wb">
+    <path name="scenario-headset-mic-incall-wb">
         <ctl name="HPOUT1L Input 3" value="IN1R" />
         <ctl name="HPOUT1R Input 3" value="IN1R" />
         <ctl name="LHPF1 Input 1" value="IN1R" />
@@ -1150,12 +1170,12 @@
 
     <!-- ### Volume ### -->
 
-    <path name="volume-headset-in-default">
+    <path name="volume-headset-mic-default">
         <ctl name="IN1R Volume" value="30" />
         <ctl name="IN1R Digital Volume" value="134" />
     </path>
 
-    <path name="volume-headset-in-incall">
+    <path name="volume-headset-mic-incall">
         <ctl name="IN1R Volume" value="25" />
         <ctl name="IN1R Digital Volume" value="128" />
         <ctl name="HPOUT1L Input 3 Volume" value="6" />
@@ -1169,31 +1189,31 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-sco-headset-in-enable">
+    <path name="device-sco-headset-mic-enable">
         <!-- None -->
     </path>
 
-    <path name="device-sco-headset-in-disable">
+    <path name="device-sco-headset-mic-disable">
         <!-- None -->
     </path>
 
     <!-- ### Scenario ### -->
 
-    <path name="scenario-sco-headset-in-default">
+    <path name="scenario-sco-headset-mic-default">
         <ctl name="ASRC2L Input" value="AIF3RX1" />
         <ctl name="ASRC2R Input" value="AIF3RX2" />
         <ctl name="AIF2TX1 Input 1" value="None" />
         <ctl name="AIF2TX2 Input 1" value="None" />
     </path>
 
-    <path name="scenario-sco-headset-in-incall-nb">
+    <path name="scenario-sco-headset-mic-incall-nb">
         <ctl name="ASRC2L Input" value="AIF3RX1" />
         <ctl name="ASRC2R Input" value="AIF3RX2" />
         <ctl name="AIF2TX1 Input 1" value="None" />
         <ctl name="AIF2TX2 Input 1" value="None" />
     </path>
 
-    <path name="scenario-sco-headset-in-incall-wb">
+    <path name="scenario-sco-headset-mic-incall-wb">
         <ctl name="ASRC2L Input" value="AIF3RX1" />
         <ctl name="ASRC2R Input" value="AIF3RX2" />
         <ctl name="AIF2TX1 Input 1" value="None" />
@@ -1464,35 +1484,57 @@
 
     <!-- ### Capture ### -->
 
-    <path name="voice-earpiece-main-mic">
+    <path name="voice-earpiece-two-mic">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-nb" />
         <path name="volume-two-mic-incall" />
     </path>
 
-    <path name="voice-earpiece-main-mic-wb">
+    <path name="voice-earpiece-two-mic-wb">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-wb" />
         <path name="volume-two-mic-incall" />
     </path>
 
-    <path name="voice-speaker-main-mic">
+    <path name="voice-speaker-two-mic">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-nb" />
         <path name="volume-two-mic-incall" />
     </path>
 
-    <path name="voice-speaker-main-mic-wb">
+    <path name="voice-speaker-two-mic-wb">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-wb" />
         <path name="volume-two-mic-incall" />
     </path>
 
-    <path name="voice-rec-main-mic">
+    <path name="voice-headphones-two-mic">
+        <path name="channel-stereo" />
+
+        <path name="scenario-two-mic-headphones-incall-nb" />
+        <path name="volume-two-mic-incall" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-earpiece-incall-nb" />
+        -->
+    </path>
+
+    <path name="voice-headphones-two-mic-wb">
+        <path name="channel-stereo" />
+
+        <path name="scenario-two-mic-headphones-incall-wb" />
+        <path name="volume-two-mic-incall" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-earpiece-incall-wb" />
+        -->
+    </path>
+
+    <path name="voice-rec-two-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
@@ -1502,37 +1544,37 @@
     <path name="voice-headset-mic">
         <path name="channel-left" />
 
-        <path name="scenario-headset-in-incall-nb" />
-        <path name="volume-headset-in-incall" />
+        <path name="scenario-headset-mic-incall-nb" />
+        <path name="volume-headset-mic-incall" />
     </path>
 
     <path name="voice-headset-mic-wb">
         <path name="channel-left" />
 
-        <path name="scenario-headset-in-incall-wb" />
-        <path name="volume-headset-in-incall" />
+        <path name="scenario-headset-mic-incall-wb" />
+        <path name="volume-headset-mic-incall" />
     </path>
 
     <path name="voice-rec-headset-mic">
         <path name="channel-left" />
 
-        <path name="scenario-headset-in-default" />
-        <path name="volume-headset-in-default" />
+        <path name="scenario-headset-mic-default" />
+        <path name="volume-headset-mic-default" />
     </path>
 
     <path name="voice-bt-sco-headset-mic">
         <path name="channel-none" />
 
-        <path name="scenario-sco-headset-in-incall-nb" />
+        <path name="scenario-sco-headset-mic-incall-nb" />
     </path>
 
     <path name="voice-bt-sco-headset-mic-wb">
         <path name="channel-none" />
 
-        <path name="scenario-sco-headset-in-incall-wb" />
+        <path name="scenario-sco-headset-mic-incall-wb" />
     </path>
 
-    <path name="media-main-mic">
+    <path name="media-builtin-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
@@ -1549,24 +1591,24 @@
     <path name="media-headset-mic">
         <path name="channel-left" />
 
-        <path name="scenario-headset-in-default" />
-        <path name="volume-headset-in-default" />
+        <path name="scenario-headset-mic-default" />
+        <path name="volume-headset-mic-default" />
     </path>
 
     <path name="media-bt-sco-headset-mic">
         <path name="channel-none" />
 
-        <path name="scenario-sco-headset-in-default" />
+        <path name="scenario-sco-headset-mic-default" />
     </path>
 
-    <path name="communication-earpiece-main-mic">
+    <path name="communication-earpiece-two-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-earpiece-communication" />
         <path name="volume-builtin-mic-default" />
     </path>
 
-    <path name="communication-speaker-main-mic">
+    <path name="communication-speaker-two-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-speaker-communication" />
@@ -1576,8 +1618,8 @@
     <path name="communication-headset-mic">
         <path name="channel-left" />
 
-        <path name="scenario-headset-in-default" />
-        <path name="volume-headset-in-default" />
+        <path name="scenario-headset-mic-default" />
+        <path name="volume-headset-mic-default" />
     </path>
 
     <path name="none">
