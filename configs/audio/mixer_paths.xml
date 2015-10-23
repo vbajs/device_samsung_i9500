@@ -181,11 +181,11 @@
     </path>
 
     <path name="scenario-earpiece-incall-nb">
-        <!-- None -->
+        <ctl name="EPOUT Digital Volume" value="120" />
     </path>
 
     <path name="scenario-earpiece-incall-wb">
-        <!-- None -->
+        <ctl name="EPOUT Digital Volume" value="118" />
     </path>
 
     <path name="scenario-earpiece-loopback">
@@ -201,7 +201,6 @@
     </path>
 
     <path name="volume-earpiece-incall">
-        <ctl name="EPOUT Digital Volume" value="128" />
         <ctl name="EPOUT Input 1 Volume" value="32" />
         <ctl name="EPOUT Input 2 Volume" value="32" />
         <ctl name="EPOUT Input 3 Volume" value="32" />
