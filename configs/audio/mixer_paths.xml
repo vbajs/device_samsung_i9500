@@ -248,13 +248,13 @@
     <!-- ### Volume ### -->
 
     <path name="volume-speaker-default">
-        <ctl name="Speaker Digital Volume" value="132" />
+        <ctl name="Speaker Digital Volume" value="132,132" />
         <ctl name="SPKOUTL Input 1 Volume" value="32" />
         <ctl name="SPKOUTL Input 2 Volume" value="32" />
     </path>
 
     <path name="volume-speaker-incall">
-        <ctl name="Speaker Digital Volume" value="144" />
+        <ctl name="Speaker Digital Volume" value="144,144" />
         <ctl name="SPKOUTL Input 1 Volume" value="10" />
         <ctl name="SPKOUTL Input 2 Volume" value="10" />
         <ctl name="SPKOUTL Input 3 Volume" value="32" />
