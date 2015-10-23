@@ -1297,11 +1297,9 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
+    lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
-
-        lock_all_outputs(adev);
-
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1347,9 +1345,8 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
                 start_bt_sco(adev);
             }
         }
-
-        unlock_all_outputs(adev, NULL);
     }
+    unlock_all_outputs(adev, NULL);
 
     str_parms_destroy(parms);
     return ret;
@@ -1414,7 +1411,13 @@ static int out_set_volume(struct audio_stream_out *stream,
     struct stream_out *out = (struct stream_out *)stream;
     struct audio_device *adev = out->dev;
 
-    if (out == adev->outputs[OUTPUT_HDMI]) {
+    /* The mutex lock is not needed, because the client
+     * is not allowed to close the stream concurrently with this API
+     *  pthread_mutex_lock(&adev->lock_outputs);
+     */
+    bool is_HDMI = out == adev->outputs[OUTPUT_HDMI];
+    /*  pthread_mutex_unlock(&adev->lock_outputs); */
+    if (is_HDMI) {
         /* only take left channel into account: the API is for stereo anyway */
         out->muted = (left == 0.0f);
         return 0;
@@ -1923,7 +1926,7 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
     out_standby(&stream->common);
     adev = (struct audio_device *)dev;
     pthread_mutex_lock(&adev->lock_outputs);
-    for (type = 0; type < OUTPUT_TOTAL; type++) {
+    for (type = 0; type < OUTPUT_TOTAL; ++type) {
         if (adev->outputs[type] == (struct stream_out *) stream) {
             adev->outputs[type] = NULL;
             break;
