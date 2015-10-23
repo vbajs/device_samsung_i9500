@@ -23,14 +23,11 @@
 #define LOG_NDEBUG 0
 
 #include <errno.h>
-#include <fcntl.h>
 #include <pthread.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <sys/stat.h>
 #include <sys/time.h>
-#include <sys/types.h>
-#include <dlfcn.h>
+#include <fcntl.h>
 
 #include <cutils/log.h>
 #include <cutils/properties.h>
@@ -47,7 +44,6 @@
 #include <tinyalsa/asoundlib.h>
 
 #include <audio_utils/resampler.h>
-#include <audio_utils/echo_reference.h>
 #include <audio_route/audio_route.h>
 
 #include <eS325VoiceProcessing.h>
@@ -232,8 +228,6 @@ struct stream_out {
      * HDMI and WM1811 share the same I2S. This means that notifications and other sounds are
      * silent when watching a 5.1 movie. */
     bool disabled;
-
-    struct echo_reference_itfe *echo_reference;
 
     audio_channel_mask_t channel_mask;
     /* Array of supported channel mask configurations. +1 so that the last entry is always 0 */
