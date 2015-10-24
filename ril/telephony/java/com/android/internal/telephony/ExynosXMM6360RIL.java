@@ -59,13 +59,13 @@ public class ExynosXMM6360RIL extends RIL {
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         super(context, preferredNetworkType, cdmaSubscription, null);
-        mQANElements = 5;
+        mQANElements = 4;
     }
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType,
                    int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
-        mQANElements = 5;
+        mQANElements = 4;
     }
 
     public void
