@@ -117,6 +117,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/synapse/config.json.generate.charger:root/res/synapse/config.json.generate.charger \
     $(LOCAL_PATH)/synapse/config.json.generate.cpu:root/res/synapse/config.json.generate.cpu \
     $(LOCAL_PATH)/synapse/config.json.generate.governor:root/res/synapse/config.json.generate.governor \
+    $(LOCAL_PATH)/synapse/config.json.generate.gpu:root/res/synapse/config.json.generate.gpu \
     $(LOCAL_PATH)/synapse/config.json.generate.io:root/res/synapse/config.json.generate.io \
     $(LOCAL_PATH)/synapse/config.json.generate.led:root/res/synapse/config.json.generate.led \
     $(LOCAL_PATH)/synapse/config.json.generate.mem:root/res/synapse/config.json.generate.mem \

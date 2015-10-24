@@ -22,7 +22,7 @@ cat << CTAG
 				{ SOptionList:{
 					title:"I/O Scheduler",
 					description:"The I/O Scheduler decides how to prioritize and handle I/O requests. More info: <a href='http://timos.me/tm/wiki/ioscheduler'>HERE</a>",
-					default:`bfq`,
+					default:"bfq",
 					action:"ioset scheduler",
                     values:[
 `
