@@ -4,15 +4,6 @@ import init.universal5410.wifi.rc
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
-# Increase max readahead size to 512 KB
-    write /sys/block/mmcblk0/queue/read_ahead_kb 512
-    write /sys/block/mmcblk1/queue/read_ahead_kb 512
-
-# Flash storage isn't a good entropy source, and only causes
-# locking overhead in the kernel. Turn it off.
-    write /sys/block/mmcblk0/queue/add_random 0
-    write /sys/block/mmcblk1/queue/add_random 0    
-    
 on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
