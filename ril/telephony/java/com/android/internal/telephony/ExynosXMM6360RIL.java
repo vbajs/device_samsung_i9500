@@ -22,6 +22,7 @@ import android.content.Context;
 import android.telephony.Rlog;
 import android.os.Message;
 import android.os.Parcel;
+import android.os.SystemProperties;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SignalStrength;
 import android.telephony.SmsManager;
@@ -59,13 +60,13 @@ public class ExynosXMM6360RIL extends RIL {
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         super(context, preferredNetworkType, cdmaSubscription, null);
-        mQANElements = 4;
+        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 5);
     }
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType,
                    int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
-        mQANElements = 4;
+        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 5);
     }
 
     public void
@@ -377,10 +378,10 @@ public class ExynosXMM6360RIL extends RIL {
         String strings[] = (String[])responseStrings(p);
         ArrayList<OperatorInfo> ret;
 
-        if (strings.length % mQANElements != 0) {
-            throw new RuntimeException("RIL_REQUEST_QUERY_AVAILABLE_NETWORKS: invalid response. Got "
-                                       + strings.length + " strings, expected multiple of " + mQANElements);
-        }
+        //if (strings.length % mQANElements != 0) {
+        //    throw new RuntimeException("RIL_REQUEST_QUERY_AVAILABLE_NETWORKS: invalid response. Got "
+        //                               + strings.length + " strings, expected multiple of " + mQANElements);
+        //}
 
         ret = new ArrayList<OperatorInfo>(strings.length / mQANElements);
         Operators init = null;
