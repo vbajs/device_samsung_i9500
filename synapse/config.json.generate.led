@@ -13,13 +13,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"Low light environment brightness",
 		min:1, max:120, unit:"mA", weight:0.125,
-		default:0.625,
+		default:`cat /sys/class/sec/led/led_lowpower_current`,
                 action:"generic /sys/class/sec/led/led_lowpower_current"
 	}},
 	{ SSeekBar:{
 		title:"Bright light environment brightness",
 		min:1, max:120, unit:"mA", weight:0.125,
-		default:5,
+		default:`cat /sys/class/sec/led/led_highpower_current`,
                 action:"generic /sys/class/sec/led/led_highpower_current"
 	}},
 
@@ -54,7 +54,7 @@ cat << CTAG
 		title:"Fade-out time period",
 		description:"Sets the time period of the falling slope.",
 		max:2000, unit:"ms", step:50,
-		default:1300`,
+		default:1300,
                 action:"generic /sys/class/sec/led/led_fade_out_time"
 	}},
 

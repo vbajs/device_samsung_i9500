@@ -20,28 +20,27 @@ cat << CTAG
 					action:"ioset queue read_ahead_kb"
 				}},
 				{ SOptionList:{
-					title:"I/O Scheduler",
-					description:"The I/O Scheduler decides how to prioritize and handle I/O requests. More info: <a href='http://timos.me/tm/wiki/ioscheduler'>HERE</a>",
-					default:"bfq",
-					action:"ioset scheduler",
-                    values:[
-`
-                            for IOSCHED in \`cat /sys/block/mmcblk0/queue/scheduler\` ; do
-                                    echo "\"$IOSCHED\","
-                            done
-`
-                    ],
-					notify:[
-						{
-							on:APPLY,
-							do:[ REFRESH, CANCEL ],
-							to:"`$BB echo "/sys/block/mmcblk0/queue/iosched`"
-						},
-						{
-							on:REFRESH,
-							do:REFRESH,
-							to:"`$BB echo "/sys/block/mmcblk0/queue/iosched`"
-						}
+					title:"Internal storage scheduler",
+					default:`echo $(/res/synapse/actions/bracket-option /sys/block/mmcblk0/queue/scheduler)`,
+					action:"bracket-option /sys/block/mmcblk0/queue/scheduler",
+					values:[
+			`
+						for IOSCHED in \`cat /sys/block/mmcblk0/queue/scheduler | sed -e 's/\]//;s/\[//'\`; do
+						  echo "\"$IOSCHED\","
+						done
+			`
+					]
+				}},
+				{ SOptionList:{
+					title:"External Storage (if any) scheduler",
+					default:`echo $(/res/synapse/actions/bracket-option /sys/block/mmcblk1/queue/scheduler)`,
+					action:"bracket-option /sys/block/mmcblk1/queue/scheduler",
+					values:[
+			`
+						for IOSCHED in \`cat /sys/block/mmcblk1/queue/scheduler | sed -e 's/\]//;s/\[//'\`; do
+						  echo "\"$IOSCHED\","
+						done
+			`
 					]
 				}},
 				`if [ -f "/sys/module/mmc_core/parameters/use_spi_crc" ]; then

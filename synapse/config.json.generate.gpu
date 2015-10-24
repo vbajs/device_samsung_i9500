@@ -1,4 +1,6 @@
-#!/sbin/busybox sh
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
 
 cat << CTAG
 {
@@ -15,12 +17,12 @@ cat << CTAG
                 unit:"MHz",
 		action:"generic /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock",
 		values:[
-`
-			while read FREQ; do
-			  [[ ! -z $FREQ ]] && echo "$FREQ, "
-			done < /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
-`
-		]
+532,
+480,
+350,
+266,
+177,
+    ]
 	}},
 	{ SSeekBar:{
        		title:"GPU min freq",
@@ -29,12 +31,12 @@ cat << CTAG
                 unit:"MHz",
 		action:"generic /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock",
 		values:[
-`
-			while read FREQ; do
-			  [[ ! -z $FREQ ]] && echo "$FREQ, "
-			done < /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
-`
-		]
+532,
+480,
+350,
+266,
+177,
+    ]
 	}},
 	{ SCheckBox:{
 		description:"If enabled, the GPU ignores the normal DVFS policies and voltages, and uses hard-coded entries when waking out of clock-gating. The respective lock is 266MHz and 900mV.",
