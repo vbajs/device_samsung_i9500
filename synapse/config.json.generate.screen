@@ -54,11 +54,13 @@ cat << CTAG
 	{ SCheckBox:{
 		description:"Register intercept acts like a hook and will enable catching scenario settings and modifying them through delta controls. If a scenario does not have a setting (register) in its base sequence, then it cannot be modified by the hook.",
 		label:"Enable register hook",
+		default:0,
 		action:"generic /sys/class/misc/mdnie/hook_intercept"
 	}},
 	{ SCheckBox:{
 		description:"Enabling the master sequence will disable and ignore Samsungs profiles and scenarios, the ROM controls will be disabled.",
 		label:"Enable master sequence",
+		default:0,
 		action:"generic /sys/class/misc/mdnie/sequence_intercept"
 	}},
 	{ SPane:{
@@ -98,6 +100,7 @@ cat << CTAG
 	{ SPane:{ title:"Digital edge enhancement control" }},
 	{ SCheckBox:{
 		label:"Enable edge enhancement",
+		default:0,
 		action:"generic /sys/class/misc/mdnie/hook_control/s_edge_enhancement"
 	}},
 	{ SSeekBar:{

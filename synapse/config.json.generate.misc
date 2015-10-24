@@ -16,7 +16,7 @@ cat << CTAG
 					{ SCheckBox:{
 						label:"Enable",
 						description:"KSM lets the hypervisor system share identical memory pages amongst different processes or virtualized guests. This increases CPU consumption but improves memory.",
-						default:'$KSM',
+						default:0,
 						action:"generic /sys/kernel/mm/ksm/run"
 					}},'
 					if [ -f "/sys/kernel/mm/ksm/deferred_timer" ]; then
@@ -56,7 +56,7 @@ cat << CTAG
 					{ SCheckBox:{
 						label:"Enable",
 						description:"Sleeper Fairness is a concept used by CFS which treat sleeping/waiting tasks as if they were in a run queue. This implies tasks which spend most of the time waiting for an user input and such will get a fair share of CPU when they need it. Disabling Gentle Fair Sleepers could improve UI responsiveness.",
-						default:'$GFS',
+						default:0,
 						action:"generic /sys/kernel/sched/gentle_fair_sleepers"
 					}},'
 			fi`
@@ -80,7 +80,7 @@ cat << CTAG
 					{ SCheckBox:{
 						label:"Enable",
 						description:"Disable to fix battery drain caused by l2_hsic wakelocks. Disable at your own risk, could introduce random reboots.",
-						default:'$L2HSIC',
+						default:1,
 						action:"boolean /sys/module/wakeup/parameters/enable_l2_hsic_ws"
 					}},'
 			fi`

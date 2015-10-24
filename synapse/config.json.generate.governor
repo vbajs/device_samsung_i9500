@@ -12,7 +12,7 @@ cat << CTAG
         { SOptionList:{
 		title:"Current governor",
 		description:"The governor in charge of CPUFreq scaling",
-                default:`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor`,
+                default:`ondemand`,
                 action:"governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
                 values:[
 `
@@ -57,12 +57,18 @@ cat << CTAG
 									description:"The sampling rate controls the frequency in which the governor polls for frequency changes.",
 									min:10000, max:100000, step:10000, unit:"ms"
 								}
+							}},
+							{ "sampling_rate_min" : {
+								SSeekBar: {
+									title:"Minimum Sampling rate",
+									description:"The sampling rate controls the frequency in which the governor polls for frequency changes.",
+									min:10000, max:100000, step:10000, unit:"ms"
+								}
 							}}
 						]
 					},
 					exclude: [
 						"cpu_utilization",
-						"sampling_rate_min",
 						"up_threshold_h",
 						"up_threshold_l"
 					]

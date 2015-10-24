@@ -13,13 +13,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"Low light environment brightness",
 		min:1, max:120, unit:"mA", weight:0.125,
-		default:`cat /sys/class/sec/led/led_lowpower_current`,
+		default:0.625,
                 action:"generic /sys/class/sec/led/led_lowpower_current"
 	}},
 	{ SSeekBar:{
 		title:"Bright light environment brightness",
 		min:1, max:120, unit:"mA", weight:0.125,
-		default:`cat /sys/class/sec/led/led_highpower_current`,
+		default:5,
                 action:"generic /sys/class/sec/led/led_highpower_current"
 	}},
 
@@ -33,28 +33,28 @@ cat << CTAG
 	{ SCheckBox:{
 		description:"If disabled, the controller bypasses slope generation.", 
 		label:"Enable LED fading",
-		default:`cat /sys/class/sec/led/led_fade`,
+		default:1,
                 action:"generic /sys/class/sec/led/led_fade"
 	}},
 	{ SSeekBar:{
 		title:"Fade-in time period",
 		description:"Sets the time period of the rising slope.",
 		max:2000, unit:"ms", step:50,
-		default:`cat /sys/class/sec/led/led_fade_in_time`,
+		default:300,
                 action:"generic /sys/class/sec/led/led_fade_in_time"
 	}},
 	{ SSeekBar:{
 		title:"Blink retention period",
 		description:"Sets the time period of high retention at maximum PWM level",
 		max:2000, unit:"ms", step:50,
-		default:`cat /sys/class/sec/led/led_blink_retention`,
+		default:350,
                 action:"generic /sys/class/sec/led/led_blink_retention"
 	}},
 	{ SSeekBar:{
 		title:"Fade-out time period",
 		description:"Sets the time period of the falling slope.",
 		max:2000, unit:"ms", step:50,
-		default:`cat /sys/class/sec/led/led_fade_out_time`,
+		default:1300`,
                 action:"generic /sys/class/sec/led/led_fade_out_time"
 	}},
 
@@ -69,25 +69,25 @@ cat << CTAG
 		title:"Blink delay period",
 		description:"Sets the time period of low retention at zero PWM level",
 		max:6000, unit:"ms", step:250,
-		default:`cat /sys/class/sec/led/led_blink_delay`,
+		default:3250,
                 action:"generic /sys/class/sec/led/led_blink_delay"
 	}},
 	{ SSeekBar:{
 		title:"Red value",
 		max:255, step:2,
-		default:`cat /sys/class/sec/led/led_noti_r`,
+		default:0,
                 action:"generic /sys/class/sec/led/led_noti_r"
 	}},
 	{ SSeekBar:{
 		title:"Green value",
 		max:255, step:2,
-		default:`cat /sys/class/sec/led/led_noti_g`,
+		default:0,
                 action:"generic /sys/class/sec/led/led_noti_g"
 	}},
 	{ SSeekBar:{
 		title:"Blue value",
 		max:255, step:2,
-		default:`cat /sys/class/sec/led/led_noti_b`,
+		default:254,
                 action:"generic /sys/class/sec/led/led_noti_b"
 	}},
 

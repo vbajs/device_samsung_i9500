@@ -16,8 +16,33 @@ cat << CTAG
 					step:128,
 					min:128,
 					max:4096,
-					default:`$BB cat /sys/block/mmcblk0/queue/read_ahead_kb`,
+					default:512,
 					action:"ioset queue read_ahead_kb"
+				}},
+				{ SOptionList:{
+					title:"I/O Scheduler",
+					description:"The I/O Scheduler decides how to prioritize and handle I/O requests. More info: <a href='http://timos.me/tm/wiki/ioscheduler'>HERE</a>",
+					default:`bfq`,
+					action:"ioset scheduler",
+                    values:[
+`
+                            for IOSCHED in \`cat /sys/block/mmcblk0/queue/scheduler\` ; do
+                                    echo "\"$IOSCHED\","
+                            done
+`
+                    ],
+					notify:[
+						{
+							on:APPLY,
+							do:[ REFRESH, CANCEL ],
+							to:"`$BB echo "/sys/block/mmcblk0/queue/iosched`"
+						},
+						{
+							on:REFRESH,
+							do:REFRESH,
+							to:"`$BB echo "/sys/block/mmcblk0/queue/iosched`"
+						}
+					]
 				}},
 				`if [ -f "/sys/module/mmc_core/parameters/use_spi_crc" ]; then
 				CRCS=\`bool /sys/module/mmc_core/parameters/use_spi_crc\`
@@ -27,7 +52,7 @@ cat << CTAG
 						{ SCheckBox:{
 							label:"Software CRC control",
 							description:"Enabling software CRCs on the data blocks can be a significant (30%) performance cost. So we allow it to be disabled. Disable at your own risk, could introduce random reboots.",
-							default:'$CRCS',
+							default:1,
 							action:"boolean /sys/module/mmc_core/parameters/use_spi_crc"
 						}},'
 				fi`
@@ -38,19 +63,19 @@ cat << CTAG
 				{ SCheckBox:{
 					description:"Draw entropy from spinning (rotational) storage.",
 					label:"Add Random",
-					default:`$BB cat /sys/block/mmcblk0/queue/add_random`,
+					default:0,
 					action:"ioset queue add_random"
 				}},
 				{ SCheckBox:{
 					description:"Maintain I/O statistics for this storage device. Disabling will break I/O monitoring apps.",
 					label:"I/O Stats",
-					default:`$BB cat /sys/block/mmcblk0/queue/iostats`,
+					default:0,
 					action:"ioset queue iostats"
 				}},
 				{ SCheckBox:{
 					description:"Treat device as rotational storage.",
 					label:"Rotational",
-					default:`$BB cat /sys/block/mmcblk0/queue/rotational`,
+					default:0,
 					action:"ioset queue rotational"
 				}},				
 				{ SOptionList:{

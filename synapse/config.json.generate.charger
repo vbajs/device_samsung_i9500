@@ -33,7 +33,7 @@ cat << CTAG
 	{ SCheckBox:{
 		description:"If disabled, the charger chip will ignore unstable currents. Use at risk of your charger or charging ports. Unstable power detection will reduce the input current until a stable voltage from the power source is achieved.",
 		label:"Unstable power detection",
-		default:`cat /sys/devices/platform/sec-battery/unstable_power_detection`,
+		default:1,
                 action:"generic /sys/devices/platform/sec-battery/unstable_power_detection"
 	}},
 
@@ -46,14 +46,14 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"AC/Mains Input Current",
 		min:400, max:2100, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/ac_input_curr`,
+		default:1900,
                 action:"generic /sys/devices/platform/sec-battery/ac_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"AC/Mains Charge Current",
 		description:"AC or mains charge current supplied to battery during charging.",
 		min:400, max:2100, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/ac_chrg_curr`,
+		default:1600,
                 action:"generic /sys/devices/platform/sec-battery/ac_chrg_curr"
 	}},
 
@@ -64,13 +64,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"AC/Mains Input Current (Screen-on)",
 		min:400, max:2100, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/siop_input_limit`,
+		default:1300,
                 action:"generic /sys/devices/platform/sec-battery/siop_input_limit"
 	}},
 	{ SSeekBar:{
 		title:"AC/Mains Charge Current (Screen-on)",
 		min:400, max:2100, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/siop_charge_limit`,
+		default:1100,
                 action:"generic /sys/devices/platform/sec-battery/siop_charge_limit"
 	}},
 
@@ -83,14 +83,14 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"SDP Input Current",
 		min:400, max:1500, unit:"mA", step:25,
-		default:`cat /sys/devices/platform/sec-battery/sdp_input_curr`,
+		default:900,
                 action:"generic /sys/devices/platform/sec-battery/sdp_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"SDP Charge Current",
 		description:"NOTE: SDP charge limit serves as a global minima for ALL charge currents except MHL currents, overriding their respective value if they are inferior!",
 		min:400, max:1500, unit:"mA", step:25,
-		default:`cat /sys/devices/platform/sec-battery/sdp_chrg_curr`,
+		default:800,
                 action:"generic /sys/devices/platform/sec-battery/sdp_chrg_curr"
 	}},
 
@@ -103,13 +103,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"DCP Input Current",
 		min:400, max:2000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/dcp_input_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/dcp_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"DCP Charge Current",
 		min:400, max:2000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/dcp_chrg_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/dcp_chrg_curr"
 	}},
 
@@ -122,13 +122,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"CDP Input Current",
 		min:400, max:1500, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/cdp_input_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/cdp_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"CDP Charge Current",
 		min:400, max:1500, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/cdp_chrg_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/cdp_chrg_curr"
 	}},
 
@@ -141,13 +141,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"ACA Input Current",
 		min:100, max:1000, unit:"mA", step:25,
-		default:`cat /sys/devices/platform/sec-battery/aca_input_curr`,
+		default:900,
                 action:"generic /sys/devices/platform/sec-battery/aca_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"ACA Charge Current",
 		min:100, max:1000, unit:"mA", step:25,
-		default:`cat /sys/devices/platform/sec-battery/aca_chrg_curr`,
+		default:800,
                 action:"generic /sys/devices/platform/sec-battery/aca_chrg_curr"
 	}},
 
@@ -160,13 +160,13 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"Misc Input Current",
 		min:100, max:2000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/misc_input_curr`,
+		default:1700,
                 action:"generic /sys/devices/platform/sec-battery/misc_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"Misc Charge Current",
 		min:100, max:2000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/misc_chrg_curr`,
+		default:1600,
                 action:"generic /sys/devices/platform/sec-battery/misc_chrg_curr"
 	}},
 
@@ -179,7 +179,7 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"Wireless Charge Current",
 		min:100, max:1500, unit:"mA", step:25,
-		default:`cat /sys/devices/platform/sec-battery/wpc_chrg_curr`,
+		default:800,
                 action:"generic /sys/devices/platform/sec-battery/wpc_chrg_curr"
 	}}
 
@@ -191,25 +191,25 @@ cat << CTAG
 	{ SSeekBar:{
 		title:"500mA MHL Class",
 		min:300, max:1000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/mhl_500_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/mhl_500_curr"
 	}},
 	{ SSeekBar:{
 		title:"900mA MHL Class",
 		min:300, max:1500, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/mhl_900_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/mhl_900_curr"
 	}},
 	{ SSeekBar:{
 		title:"1500mA MHL Class",
 		min:300, max:2000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/mhl_1500_curr`,
+		default:1300,
                 action:"generic /sys/devices/platform/sec-battery/mhl_1500_curr"
 	}},
 	{ SSeekBar:{
 		title:"USB powered MHL adapter",
 		min:300, max:2000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/mhl_usb_curr`,
+		default:1000,
                 action:"generic /sys/devices/platform/sec-battery/mhl_usb_curr"
 	}},
     ]
