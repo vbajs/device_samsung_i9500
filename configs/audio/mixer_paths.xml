@@ -1187,6 +1187,13 @@
         <path name="volume-back-mic-default" />
     </path>
 
+    <path name="media-two-mic">
+        <path name="channel-left" />
+
+        <path name="scenario-builtin-mic-default" />
+        <path name="volume-builtin-mic-default" />
+    </path>
+
     <path name="media-headset-mic">
         <path name="channel-left" />
 
