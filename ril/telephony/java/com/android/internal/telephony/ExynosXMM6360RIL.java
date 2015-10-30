@@ -360,7 +360,7 @@ public class ExynosXMM6360RIL extends RIL {
      */
     @Override
     public void sendSMSExpectMore(String smscPDU, String pdu, Message result) {
-        Rlog.v(RILJ_LOG_TAG, "XMM7260: sendSMSExpectMore");
+        Rlog.v(RILJ_LOG_TAG, "XMM6360: sendSMSExpectMore");
 
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_SEND_SMS, result);
         constructGsmSendSmsRilRequest(rr, smscPDU, pdu);
@@ -395,7 +395,7 @@ public class ExynosXMM6360RIL extends RIL {
             String strState = strings[i+3].toLowerCase();
 
             Rlog.v(RILJ_LOG_TAG,
-                   "XMM7260: Add OperatorInfo: " + strOperatorLong +
+                   "XMM6360: Add OperatorInfo: " + strOperatorLong +
                    ", " + strOperatorLong +
                    ", " + strOperatorNumeric +
                    ", " + strState);
@@ -435,13 +435,13 @@ public class ExynosXMM6360RIL extends RIL {
             case RIL_UNSOL_DEVICE_READY_NOTI: /* Registrant notification */
             case RIL_UNSOL_SIM_PB_READY: /* Registrant notification */
                 Rlog.v(RILJ_LOG_TAG,
-                       "XMM7260: ignoring unsolicited response " +
+                       "XMM6360: ignoring unsolicited response " +
                        origResponse);
                 return;
         }
 
         if (newResponse != origResponse) {
-            riljLog("SlteRIL: remap unsolicited response from " +
+            riljLog("ExynosXMM6360RIL: remap unsolicited response from " +
                     origResponse + " to " + newResponse);
             p.setDataPosition(dataPosition);
             p.writeInt(newResponse);
@@ -467,7 +467,7 @@ public class ExynosXMM6360RIL extends RIL {
             case RIL_UNSOL_AM:
                 String strAm = (String)ret;
                 // Add debug to check if this wants to execute any useful am command
-                Rlog.v(RILJ_LOG_TAG, "XMM7260: am=" + strAm);
+                Rlog.v(RILJ_LOG_TAG, "XMM6360: am=" + strAm);
                 break;
         }
     }
