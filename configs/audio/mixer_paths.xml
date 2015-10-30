@@ -525,44 +525,30 @@
     <!-- ### Scenario ### -->
     <path name="scenario-builtin-mic-default">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-builtin-mic-earpiece-communication">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-builtin-mic-speaker-communication">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-builtin-mic-earpiece-incall-nb">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-builtin-mic-earpiece-incall-wb">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-builtin-mic-speaker-incall-nb">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-builtin-mic-speaker-incall-wb">
         <ctl name="LHPF1 Input 1" value="IN1L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <!-- ### Volume ### -->
@@ -598,32 +584,22 @@
 
     <path name="scenario-back-mic-default">
         <ctl name="LHPF2 Input 1" value="IN2L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-back-mic-earpiece-incall-nb">
         <ctl name="LHPF2 Input 1" value="IN2L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-back-mic-earpiece-incall-wb">
         <ctl name="LHPF2 Input 1" value="IN2L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-back-mic-speaker-incall-nb">
         <ctl name="LHPF2 Input 1" value="IN2L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-back-mic-speaker-incall-wb">
         <ctl name="LHPF2 Input 1" value="IN2L" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <!-- ### Volume ### -->
@@ -757,24 +733,18 @@
         <ctl name="HPOUT1L Input 3" value="None" />
         <ctl name="HPOUT1R Input 3" value="None" />
         <ctl name="LHPF1 Input 1" value="IN1R" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-headset-mic-incall-nb">
         <ctl name="HPOUT1L Input 3" value="IN1R" />
         <ctl name="HPOUT1R Input 3" value="IN1R" />
         <ctl name="LHPF1 Input 1" value="IN1R" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <path name="scenario-headset-mic-incall-wb">
         <ctl name="HPOUT1L Input 3" value="IN1R" />
         <ctl name="HPOUT1R Input 3" value="IN1R" />
         <ctl name="LHPF1 Input 1" value="IN1R" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
     <!-- ### Volume ### -->
@@ -1095,6 +1065,8 @@
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-nb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-two-mic-incall" />
     </path>
 
@@ -1102,6 +1074,8 @@
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-wb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-two-mic-incall" />
     </path>
 
@@ -1109,6 +1083,8 @@
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-nb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-two-mic-incall" />
     </path>
 
@@ -1116,6 +1092,8 @@
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-wb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-two-mic-incall" />
     </path>
 
@@ -1123,6 +1101,8 @@
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-headphones-incall-nb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-two-mic-incall" />
     </path>
 
@@ -1130,6 +1110,8 @@
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-headphones-incall-wb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-two-mic-incall" />
     </path>
 
@@ -1137,6 +1119,8 @@
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-builtin-mic-default" />
     </path>
 
@@ -1144,6 +1128,8 @@
         <path name="channel-left" />
 
         <path name="scenario-headset-mic-incall-nb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-headset-mic-incall" />
     </path>
 
@@ -1151,6 +1137,8 @@
         <path name="channel-left" />
 
         <path name="scenario-headset-mic-incall-wb" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-headset-mic-incall" />
     </path>
 
@@ -1158,6 +1146,8 @@
         <path name="channel-left" />
 
         <path name="scenario-headset-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-headset-mic-default" />
     </path>
 
@@ -1177,6 +1167,8 @@
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-builtin-mic-default" />
     </path>
 
@@ -1184,6 +1176,8 @@
         <path name="channel-right" />
 
         <path name="scenario-back-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-back-mic-default" />
     </path>
 
@@ -1191,6 +1185,8 @@
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-builtin-mic-default" />
     </path>
 
@@ -1198,6 +1194,8 @@
         <path name="channel-left" />
 
         <path name="scenario-headset-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-headset-mic-default" />
     </path>
 
@@ -1211,6 +1209,8 @@
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-earpiece-communication" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-builtin-mic-default" />
     </path>
 
@@ -1218,6 +1218,8 @@
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-speaker-communication" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-builtin-mic-default" />
     </path>
 
@@ -1225,6 +1227,8 @@
         <path name="channel-left" />
 
         <path name="scenario-headset-mic-default" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-headset-mic-default" />
     </path>
 
