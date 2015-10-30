@@ -582,7 +582,7 @@ service gearinit /sbin/gearinit.sh
 service cpboot-daemon /system/bin/cbd -d -t xmm626 -b h -m h -p 13
     class main
     user root
-    group radio cache inet misc audio sdcard_rw log sdcard_r shell
+    group radio cache inet misc audio sdcard_r sdcard_rw log shell
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
@@ -630,6 +630,9 @@ service mobicore /system/bin/mcDriverDaemon \
 service battery_charger /sbin/healthd -c
     class charger
     critical
+
+on property:persist.sys.cpboot=disable
+    stop cpboot-daemon
 
 on property:sys.boot_completed=1
 # Disable pulsing led on boot complete
