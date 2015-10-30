@@ -60,13 +60,13 @@ public class ExynosXMM6360RIL extends RIL {
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         super(context, preferredNetworkType, cdmaSubscription, null);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 6);
+        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 5);
     }
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType,
                    int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 6);
+        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 5);
     }
 
     public void
@@ -370,6 +370,45 @@ public class ExynosXMM6360RIL extends RIL {
         send(rr);
     }
 
+    // This method is used in the search network functionality.
+    // See mobile network setting -> network operators
+    @Override
+    protected Object
+    responseOperatorInfos(Parcel p) {
+        String strings[] = (String[])responseStrings(p);
+        ArrayList<OperatorInfo> ret;
+
+        if (strings.length % mQANElements != 0) {
+            throw new RuntimeException("RIL_REQUEST_QUERY_AVAILABLE_NETWORKS: invalid response. Got "
+                                       + strings.length + " strings, expected multiple of " + mQANElements);
+        }
+
+        ret = new ArrayList<OperatorInfo>(strings.length / mQANElements);
+        Operators init = null;
+        if (strings.length != 0) {
+            init = new Operators();
+        }
+
+        for (int i = 0 ; i < strings.length ; i += mQANElements) {
+            String strOperatorLong = init.unOptimizedOperatorReplace(strings[i+0]);
+            String strOperatorNumeric = strings[i+2];
+            String strState = strings[i+3].toLowerCase();
+
+            Rlog.v(RILJ_LOG_TAG,
+                   "XMM7260: Add OperatorInfo: " + strOperatorLong +
+                   ", " + strOperatorLong +
+                   ", " + strOperatorNumeric +
+                   ", " + strState);
+
+            ret.add(new OperatorInfo(strOperatorLong, // operatorAlphaLong
+                                     strOperatorLong, // operatorAlphaShort
+                                     strOperatorNumeric,    // operatorNumeric
+                                     strState));  // stateString
+        }
+
+        return ret;
+    }
+
     @Override
     protected void
     processUnsolicited(Parcel p) {
@@ -411,6 +450,9 @@ public class ExynosXMM6360RIL extends RIL {
         switch (newResponse) {
             case RIL_UNSOL_AM:
                 ret = responseString(p);
+                break;
+            case RIL_UNSOL_STK_SEND_SMS_RESULT:
+                ret = responseInts(p);
                 break;
             default:
                 // Rewind the Parcel
