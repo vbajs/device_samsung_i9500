@@ -647,7 +647,7 @@
 
     <path name="scenario-two-mic-earpiece-incall-nb">
         <path name="scenario-builtin-mic-earpiece-incall-nb" />
-        <path name="scenario-back-mic-earpiece-incall-nb" />	  
+        <path name="scenario-back-mic-earpiece-incall-nb" />
     </path>
 
     <path name="scenario-two-mic-earpiece-incall-wb">
@@ -1181,15 +1181,6 @@
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
         <path name="volume-back-mic-default" />
     </path>
-
-    <path name="media-two-mic">
-        <path name="channel-left" />
-
-        <path name="scenario-builtin-mic-default" />
-        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
-        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
-        <path name="volume-builtin-mic-default" />
-    </path>
 
     <path name="media-headset-mic">
         <path name="channel-left" />
