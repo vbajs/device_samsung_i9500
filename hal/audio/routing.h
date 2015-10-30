@@ -335,6 +335,8 @@ const struct route_config hdmi = {
 const struct route_config none = {
     "none",
     "none",
+    "none",
+    "none",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
