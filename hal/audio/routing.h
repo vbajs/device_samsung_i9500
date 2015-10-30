@@ -227,8 +227,8 @@ const struct route_config media_bt_sco_headset_out = {
 const struct route_config camcorder_speaker = {
     "media-speaker",
     "device-speaker",
-    "media-two-mic",
-    "device-two-mic",
+    "media-builtin-mic",
+    "device-builtin-mic",
     { ES325_PRESET_CAMCORDER,
       ES325_PRESET_CAMCORDER }
 };
