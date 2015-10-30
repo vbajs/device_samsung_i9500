@@ -1119,9 +1119,10 @@
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
+        <path name="scenario-back-mic-default" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
-        <path name="volume-builtin-mic-default" />
+        <path name="volume-two-mic-default" />
     </path>
 
     <path name="voice-headset-mic">
