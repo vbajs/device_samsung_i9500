@@ -380,7 +380,7 @@ public class ExynosXMM6360RIL extends RIL {
 
         if (result != null) {
             CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-            AsyncResult.forMessage(result, null, e);
+            AsyncResult.forMessage(response, null, e);
             response.sendToTarget();
         }
     }
