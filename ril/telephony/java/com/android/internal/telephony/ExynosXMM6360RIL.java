@@ -378,7 +378,7 @@ public class ExynosXMM6360RIL extends RIL {
     public void setCellInfoListRate(int rateInMillis, Message response) {
         Rlog.v(RILJ_LOG_TAG, "XMM6360: setCellInfoListRate");
 
-        if (result != null) {
+        if (response != null) {
             CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
             AsyncResult.forMessage(response, null, e);
             response.sendToTarget();
