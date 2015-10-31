@@ -246,7 +246,7 @@ const struct route_config voice_rec_speaker = {
     "voice-rec-speaker",
     "device-speaker",
     "voice-rec-two-mic",
-    "device-builtin-mic",
+    "device-two-mic",
     { ES325_PRESET_ASRA_HANDHELD,
       ES325_PRESET_ASRA_DESKTOP }
 };
@@ -255,7 +255,7 @@ const struct route_config voice_rec_headphones = {
     "voice-rec-headphones",
     "device-headphones",
     "voice-rec-two-mic",
-    "device-builtin-mic",
+    "device-two-mic",
     { ES325_PRESET_ASRA_HANDHELD,
       ES325_PRESET_ASRA_DESKTOP }
 };

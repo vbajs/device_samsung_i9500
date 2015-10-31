@@ -677,6 +677,11 @@
 
     <!-- ### Volume ### -->
 
+    <path name="volume-two-mic-default">
+        <path name="volume-builtin-mic-default" />
+        <path name="volume-back-mic-default" />
+    </path>
+
     <path name="volume-two-mic-incall">
         <path name="volume-builtin-mic-incall" />
         <path name="volume-back-mic-incall" />
