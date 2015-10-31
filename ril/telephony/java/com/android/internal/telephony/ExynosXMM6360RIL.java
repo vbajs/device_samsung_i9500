@@ -20,6 +20,7 @@ import static com.android.internal.telephony.RILConstants.*;
 
 import android.content.Context;
 import android.telephony.Rlog;
+import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
@@ -346,6 +347,42 @@ public class ExynosXMM6360RIL extends RIL {
         return new SignalStrength(gsmSignalStrength, gsmBitErrorRate, cdmaDbm, cdmaEcio, evdoDbm,
                 evdoEcio, evdoSnr, lteSignalStrength, lteRsrp, lteRsrq, lteRssnr, lteCqi,
                 tdScdmaRscp, isGsm);
+    }
+
+    /**
+     * The RIL can't handle some requests. Override them to avoid wake locks.
+     */
+    @Override
+    public void getNeighboringCids(Message response) {
+	    Rlog.v(RILJ_LOG_TAG, "XMM6360: getNeighboringCids");
+
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
+    }
+
+    @Override
+    public void getCellInfoList(Message result) {
+        Rlog.v(RILJ_LOG_TAG, "XMM6360: getCellInfoList");
+
+        if (result != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
+    }
+
+    @Override
+    public void setCellInfoListRate(Message result) {
+        Rlog.v(RILJ_LOG_TAG, "XMM6360: setCellInfoListRate");
+
+        if (result != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
     }
 
     private void constructGsmSendSmsRilRequest(RILRequest rr, String smscPDU, String pdu) {
