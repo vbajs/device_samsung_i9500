@@ -375,13 +375,13 @@ public class ExynosXMM6360RIL extends RIL {
     }
 
     @Override
-    public void setCellInfoListRate(Message result) {
+    public void setCellInfoListRate(int rateInMillis, Message response) {
         Rlog.v(RILJ_LOG_TAG, "XMM6360: setCellInfoListRate");
 
         if (result != null) {
             CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
             AsyncResult.forMessage(result, null, e);
-            result.sendToTarget();
+            response.sendToTarget();
         }
     }
 
