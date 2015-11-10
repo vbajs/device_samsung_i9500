@@ -292,9 +292,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
 # VM Config
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=false \
