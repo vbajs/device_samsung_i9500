@@ -353,12 +353,6 @@
 
     <!-- Is the device LTE capable -->
     <bool name="config_lte_capable">false</bool>
-
-    <!-- Default value for proximity check on screen wake
-         NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)
-    -->
-    <bool name="config_proximityCheckOnWake">true</bool>
-    <integer name="config_proximityCheckTimeout">400</integer>
 	
     <!-- Boolean to enable STK functionality on Samsung phones -->
     <bool name="config_samsung_stk">true</bool>
@@ -380,10 +374,6 @@
         <item>450</item>
         <item>1036</item>
     </integer-array> -->
-
-    <!-- CyanogenMod Performance profiles -->
-    <string name="config_perf_profile_prop">sys.perf.profile</string>
-    <string name="config_perf_profile_default_entry">1</string>
 
     <!-- If a dock provides a lid switch, that lid can be removed. This
          setting is used to determine, whether lidOpenRotation has to be
