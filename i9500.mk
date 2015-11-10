@@ -145,17 +145,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/synapse/actions/voltage:root/res/synapse/actions/voltage
 
 # GPS
+PRODUCT_PACKAGES += \
+    libstlport \
+    libdmitry
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.cer:system/etc/gps.cer \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml \
     $(LOCAL_PATH)/configs/gps/SuplRootCert:system/etc/SuplRootCert
-	
-# We need to build the GPS interposition library for the GPS to work, also M removes
-# libstlport, but some of our binary-only prebuilts need it, so we'll add it back in
-# in source and here
-PRODUCT_PACKAGES += \
-    libstlport
 
 # GPU
 PRODUCT_PACKAGES += \
