@@ -34,48 +34,4 @@ echo 0 > /sys/module/pvrsrvkm/parameters/gPVREnableVSync
 # Mount /system as RW
 mount -w -o remount /system
 
-# Initialize SuperSU
-set -e
-
-if [[ -f "/system/bin/mksh" ]]; then
-    cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
-else
-    cp -p "/system/bin/sh" "/system/xbin/sugote-mksh"
-fi
-
-mkdir -p "/system/bin/.ext"
-chmod 0777 "/system/bin/.ext"
-cp -p "/system/xbin/su" "/system/bin/.ext/.su"
-
-rm -f "/system/bin/app_process"
-ln -s "/system/xbin/daemonsu" "/system/bin/app_process"
-
-for BIT in "64" "32"; do
-    if [[ -f "/system/bin/app_process${BIT}" ]]; then
-        if [[ ! -f "/system/bin/app_process${BIT}_original" ]]; then
-            mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
-            ln -s "/system/xbin/daemonsu" "/system/bin/app_process${BIT}"
-        fi
-        if [[ ! -f "/system/bin/app_process_init" ]]; then
-            cp -p "/system/bin/app_process${BIT}_original" "/system/bin/app_process_init"
-        fi
-    fi
-done
-
-chcon u:object_r:system_file:s0 /system/app/SuperSU/SuperSU.apk
-chcon u:object_r:toolbox_exec:s0 /system/etc/install-recovery.sh
-chcon u:object_r:system_file:s0 /system/bin/.ext/.su
-chcon u:object_r:system_file:s0 /system/xbin/daemonsu
-chcon u:object_r:zygote_exec:s0 /system/xbin/sugote
-chcon u:object_r:system_file:s0 /system/xbin/supolicy
-chcon u:object_r:system_file:s0 /system/lib/libsupol.so
-chcon u:object_r:system_file:s0 /system/xbin/sugote-mksh
-chcon u:object_r:zygote_exec:s0 /system/bin/app_process32_original
-chcon u:object_r:system_file:s0 /system/bin/app_process_init
-chcon u:object_r:system_file:s0 /system/etc/init.d/99SuperSUDaemon
-chcon u:object_r:system_file:s0 /system/etc/.installed_su_daemon
-chcon u:object_r:system_file:s0 /system/xbin/su
-
-/system/etc/init.d/99SuperSUDaemon
-
 exit 0

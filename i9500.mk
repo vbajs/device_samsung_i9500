@@ -269,20 +269,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.build.selinux=1
 
+## Root on Android M needs to be handled differently
 # SuperSU
-PRODUCT_PACKAGES += \
-    .installed_su_daemon \
-    99SuperSUDaemon \
-    SuperSU \
-    daemonsu \
-    install-recovery \
-    libsupol.so \
-    su \
-    sugote \
-    supolicy
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=0
+##PRODUCT_PACKAGES += \
+##    .installed_su_daemon \
+##    99SuperSUDaemon \
+##    SuperSU \
+##    daemonsu \
+##    install-recovery \
+##    libsupol.so \
+##    su \
+##    sugote \
+##    supolicy
+##
+##PRODUCT_PROPERTY_OVERRIDES += \
+##    persist.sys.root_access=0
 
 # Tethering Config
 PRODUCT_PROPERTY_OVERRIDES += \
