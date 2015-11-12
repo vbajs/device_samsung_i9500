@@ -296,11 +296,12 @@ PRODUCT_PACKAGES += \
 # VM Config
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=false \
-    dalvik.vm.dex2oat-filter=everything \
-    dalvik.vm.dex2oat-flags=--no-watch-dog \
-    dalvik.vm.image-dex2oat-filter=everything \
-    dalvik.vm.isa.arm.features=lpae,div \
     ro.kernel.android.checkjni=0
+
+#    dalvik.vm.dex2oat-filter=everything \
+#    dalvik.vm.dex2oat-flags=--no-watch-dog \
+#    dalvik.vm.image-dex2oat-filter=everything \
+#    dalvik.vm.isa.arm.features=lpae,div \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
