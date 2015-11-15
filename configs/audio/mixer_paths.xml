@@ -555,12 +555,12 @@
 
     <path name="volume-builtin-mic-default">
         <ctl name="IN1L Volume" value="31" />
-        <ctl name="IN1L Digital Volume" value="136" />
+        <ctl name="IN1L Digital Volume" value="158" />
     </path>
 
     <path name="volume-builtin-mic-incall">
         <ctl name="IN1L Volume" value="28" />
-        <ctl name="IN1L Digital Volume" value="136" />
+        <ctl name="IN1L Digital Volume" value="150" />
         <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
@@ -606,7 +606,7 @@
 
     <path name="volume-back-mic-default">
         <ctl name="IN2L Volume" value="28" />
-        <ctl name="IN2L Digital Volume" value="136" />
+        <ctl name="IN2L Digital Volume" value="158" />
     </path>
 
     <path name="volume-back-mic-incall">
@@ -1121,7 +1121,7 @@
     </path>
 
     <path name="voice-rec-two-mic">
-        <path name="channel-left" />
+        <path name="channel-stereo" />
 
         <path name="scenario-builtin-mic-default" />
         <path name="scenario-back-mic-default" />
