@@ -380,8 +380,6 @@ static char *camera_get_parameters(struct camera_device *device)
 
     params.set("fast-fps-mode", "0");
 
-    params.set(CameraParameters::KEY_PREVIEW_SIZE, "1024x768");
-
     char *ret = strdup(params.flatten().string());
     VENDOR_CALL(device, put_parameters, parameters);
 
