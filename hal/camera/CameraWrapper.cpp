@@ -378,17 +378,9 @@ static char *camera_get_parameters(struct camera_device *device)
     CameraParameters2 params;
     params.unflatten(String8(parameters));
 
-    params.set(CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "0.5");
-    params.set(CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-4");
-    params.set(CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "4");
-
-    /* Sure, it's supported, but not here */
-    params.set(CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "false");
+    params.set("fast-fps-mode", "0");
 
     params.set(CameraParameters::KEY_PREVIEW_SIZE, "1024x768");
-
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
 
     char *ret = strdup(params.flatten().string());
     VENDOR_CALL(device, put_parameters, parameters);
