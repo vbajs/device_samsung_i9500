@@ -385,6 +385,8 @@ static char *camera_get_parameters(struct camera_device *device)
     /* Sure, it's supported, but not here */
     params.set(CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "false");
 
+    params.set(CameraParameters::KEY_PREVIEW_SIZE, "1024x768");
+
     params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
 
