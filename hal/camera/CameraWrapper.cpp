@@ -73,8 +73,6 @@ camera_module_t HAL_MODULE_INFO_SYM = {
     .set_callbacks = NULL, /* remove compilation warnings */
     .get_vendor_tag_ops = NULL, /* remove compilation warnings */
     .open_legacy = NULL, /* remove compilation warnings */
-    .set_torch_mode = NULL, /* remove compilation warnings */
-    .init = NULL, /* remove compilation warnings */
     .reserved = {0}, /* remove compilation warnings */
 };
 
@@ -339,21 +337,6 @@ static int camera_set_parameters(struct camera_device *device,
     if (params.get(CameraParameters::KEY_RECORDING_HINT))
         isVideo = !strcmp(params.get(CameraParameters::KEY_RECORDING_HINT), "true");
 
-    if (id == FRONT_CAMERA_ID) {
-        int camMode;
-        if (params.get(CameraParameters::KEY_SAMSUNG_CAMERA_MODE)) {
-            camMode = params.getInt(CameraParameters::KEY_SAMSUNG_CAMERA_MODE);
-        } else {
-            camMode = -1;
-        }
-
-        if (camMode == -1) {
-            params.set(CameraParameters::KEY_SAMSUNG_CAMERA_MODE, "1");
-        } else {
-            params.set(CameraParameters::KEY_SAMSUNG_CAMERA_MODE, isVideo ? "1" : "0");
-        }
-    }
-
     /* Are we in continuous focus mode? */
     if (strcmp(params.get(CameraParameters::KEY_FOCUS_MODE), "infinity") &&
        strcmp(params.get(CameraParameters::KEY_FOCUS_MODE), "fixed") && (id == BACK_CAMERA_ID)) {
@@ -404,8 +387,6 @@ static char *camera_get_parameters(struct camera_device *device)
 
     params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(CameraParameters::KEY_FACE_DETECTION, "off");
-    params.set(CameraParameters::KEY_SUPPORTED_FACE_DETECTION, "off");
 
     char *ret = strdup(params.flatten().string());
     VENDOR_CALL(device, put_parameters, parameters);
