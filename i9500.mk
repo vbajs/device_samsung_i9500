@@ -87,6 +87,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
+PRODUCT_PACKAGES += \
+    libhwjpeg
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -246,6 +249,12 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
+    libExynosOMX_Core \
+    libOMX.Exynos.AVC.Decoder \
+    libOMX.Exynos.AVC.Encoder \
+    libOMX.Exynos.MPEG4.Decoder \
+    libOMX.Exynos.MPEG4.Encoder \
+    libOMX.Exynos.VP8.Decoder \
     libstagefrighthw
 
 # Power
