@@ -89,7 +89,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     camera.universal5410 \
-    libhwjpeg
+    libhwjpeg \
+    libsamsung_symbols
 
 # Charger
 PRODUCT_PACKAGES += \
