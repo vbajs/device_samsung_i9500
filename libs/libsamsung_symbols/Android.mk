@@ -21,7 +21,7 @@ LOCAL_SRC_FILES := \
     GraphicBufferMapper.cpp \
 	samsung_ril.cpp
 
-LOCAL_SHARED_LIBRARIES := libui
+LOCAL_SHARED_LIBRARIES := libbinder libui
 
 LOCAL_MODULE := libsamsung_symbols
 LOCAL_MODULE_TAGS := optional
