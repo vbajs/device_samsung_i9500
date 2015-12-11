@@ -48,6 +48,9 @@
 /dev/fimg2d                                             u:object_r:video_device:s0
 /dev/v4l-subdev[0-9]*                                   u:object_r:video_device:s0
 
+# eMMC
+/dev/block/mmcblk0p[0-9]*                               u:object_r:emmcblk_device:s0
+
 # Wifi
 /dev/rfkill                                             u:object_r:rfkill_device:s0
 /efs/wifi/.mac.info                                     u:object_r:wpa_efs_file:s0
