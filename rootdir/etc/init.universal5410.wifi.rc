@@ -4,7 +4,7 @@ on post-fs-data
 # Wi-Fi Power Saving Mode
     write /data/.psm.info 0
     chown system root /data/.psm.info
-    chmod 0660 /data/.psm.info
+    chmod 0666 /data/.psm.info
 
 # for WIFI Antenna Selection
     chown system root /data/.ant.info
