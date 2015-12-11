@@ -1,3 +1,8 @@
+type uci, domain;
+type uci, exec_type, file_type;
+
+init_daemon_domain(uci)
+
 allow uci init:dir r_dir_perms;
 allow uci init:file r_file_perms;
 allow uci init:key { write search setattr };
