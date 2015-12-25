@@ -1,0 +1,3 @@
+allow init kernel:system syslog_read;
+allow init rootfs:file { write create setattr };
+allow init shell_data_file:lnk_file getattr;

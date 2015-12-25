@@ -1,8 +1,0 @@
-type find, domain;
-type find_exec, exec_type, file_type;
-
-init_daemon_domain(find)
-
-allow find init:dir r_dir_perms;
-allow find init:file r_file_perms;
-allow find init:key { write search setattr };
