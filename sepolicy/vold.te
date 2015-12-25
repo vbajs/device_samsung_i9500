@@ -3,5 +3,4 @@ allow vold emmcblk_device:dir create_dir_perms;
 allow vold emmcblk_device:blk_file create_file_perms;
 allow vold kernel:system module_request;
 allow vold rootfs:dir { write create add_name };
-allow vold system_file:dir { write remove_name add_name };
-allow vold system_file:file { write create unlink setattr };
+allow vold system_file:dir { add_name };

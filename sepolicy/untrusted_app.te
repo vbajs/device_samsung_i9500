@@ -1,1 +1,0 @@
-allow untrusted_app system_data_file:file write;
