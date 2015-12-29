@@ -275,9 +275,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
     ro.telephony.ril_class=ExynosXMM6360RIL
 
-# SELinux
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.build.selinux=1
+## SELinux
+##ADDITIONAL_DEFAULT_PROPERTIES += \
+##    ro.build.selinux=1
 
 ## Root on Android M needs to be handled differently
 # SuperSU
