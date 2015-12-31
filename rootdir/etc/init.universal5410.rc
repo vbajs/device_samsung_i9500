@@ -530,6 +530,15 @@ on boot
     write /proc/sys/net/core/rmem_max  1048576
     write /proc/sys/net/core/wmem_max  2097152
 
+# Arizona Sound Control Initialization
+    write /sys/class/misc/wolfson_control/eq_sp_freqs "0x0FA4 0x0404 0x0170 0x1DB9 0xF233 0x040B 0x08B6 0x1977 0xF45E 0x040A 0x114C 0x0B43 0xF7FA 0x040A 0x1F97 0xF41A 0x0400 0x1068"
+    write /sys/class/misc/wolfson_control/eq_sp_gain_1 -5
+    write /sys/class/misc/wolfson_control/eq_sp_gain_2 1
+    write /sys/class/misc/wolfson_control/eq_sp_gain_3 0
+    write /sys/class/misc/wolfson_control/eq_sp_gain_4 4
+    write /sys/class/misc/wolfson_control/eq_sp_gain_5 3
+    write /sys/class/misc/wolfson_control/switch_eq_speaker 1
+
 on charger
 # Set CPU governor to powersave
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
@@ -575,11 +584,11 @@ service pvrsrvctl /system/bin/pvrsrvctl
     oneshot
 
 # GearCM Initialization
-service gearinit /sbin/gearinit.sh
-    class core
-    user root
-    group root
-    oneshot
+#service gearinit /sbin/gearinit.sh
+#    class core
+#    user root
+#    group root
+#    oneshot
 
 # CBD Radio Daemon
 service cpboot-daemon /system/bin/cbd -d -t xmm626 -b h -m h -p 13
