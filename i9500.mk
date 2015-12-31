@@ -46,15 +46,13 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # ADB Debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.adb.secure=0 \
-    ro.debuggable=1 \
     ro.secure=0
 
 # ANT+
-PRODUCT_PACKAGES += \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    libantradio
+#PRODUCT_PACKAGES += \
+#    AntHalService \
+#    com.dsi.ant.antradio_library \
+#    libantradio
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -63,7 +61,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
-    AudioWorkaround \
+#    AudioWorkaround \
     audio.a2dp.default \
     audio.primary.universal5410 \
     audio.r_submix.default \
@@ -74,7 +72,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
     audio.offload.disable=1 \
     media.aac_51_output_enabled=true \
-    persist.incall.workaround=true
+#    persist.incall.workaround=true
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -94,59 +92,6 @@ PRODUCT_PACKAGES += \
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
-
-# Shouldn't be required on Android M
-## Doze
-##PRODUCT_PACKAGES += \
-##    SamsungDoze
-
-# FileSystem
-PRODUCT_PACKAGES += \
-    make_ext4fs \
-    setup_fs
-
-# GearCM Extras
-PRODUCT_PACKAGES += \
-    OTAUpdates \
-    Screencast \
-    Synapse \
-    gearinit.sh
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/apps/QuickBoot/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk \
-    $(LOCAL_PATH)/configs/env/gearcm:system/etc/gearcm \
-    $(LOCAL_PATH)/rootdir/etc/busybox:system/xbin/busybox_synapse \
-    $(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
-    $(LOCAL_PATH)/synapse/config.json.generate.audio:root/res/synapse/config.json.generate.audio \
-    $(LOCAL_PATH)/synapse/config.json.generate.charger:root/res/synapse/config.json.generate.charger \
-    $(LOCAL_PATH)/synapse/config.json.generate.cpu:root/res/synapse/config.json.generate.cpu \
-    $(LOCAL_PATH)/synapse/config.json.generate.governor:root/res/synapse/config.json.generate.governor \
-    $(LOCAL_PATH)/synapse/config.json.generate.gpu:root/res/synapse/config.json.generate.gpu \
-    $(LOCAL_PATH)/synapse/config.json.generate.io:root/res/synapse/config.json.generate.io \
-    $(LOCAL_PATH)/synapse/config.json.generate.led:root/res/synapse/config.json.generate.led \
-    $(LOCAL_PATH)/synapse/config.json.generate.mem:root/res/synapse/config.json.generate.mem \
-    $(LOCAL_PATH)/synapse/config.json.generate.misc:root/res/synapse/config.json.generate.misc \
-    $(LOCAL_PATH)/synapse/config.json.generate.screen:root/res/synapse/config.json.generate.screen \
-    $(LOCAL_PATH)/synapse/config.json.generate.tools:root/res/synapse/config.json.generate.tools \
-    $(LOCAL_PATH)/synapse/config.json.generate.tweaks:root/res/synapse/config.json.generate.tweaks \
-    $(LOCAL_PATH)/synapse/sqlite3:root/res/synapse/sqlite3 \
-    $(LOCAL_PATH)/synapse/uci:root/res/synapse/uci \
-    $(LOCAL_PATH)/synapse/actions/boolean:root/res/synapse/actions/boolean \
-    $(LOCAL_PATH)/synapse/actions/bracket-option:root/res/synapse/actions/bracket-option \
-    $(LOCAL_PATH)/synapse/actions/buildprop:root/res/synapse/actions/buildprop \
-    $(LOCAL_PATH)/synapse/actions/charge-source:root/res/synapse/actions/charge-source \
-    $(LOCAL_PATH)/synapse/actions/colour:root/res/synapse/actions/colour \
-    $(LOCAL_PATH)/synapse/actions/devtools:root/res/synapse/actions/devtools \
-    $(LOCAL_PATH)/synapse/actions/dropcaches:root/res/synapse/actions/dropcaches \
-    $(LOCAL_PATH)/synapse/actions/dropcaches_prof:root/res/synapse/actions/dropcaches_prof \
-    $(LOCAL_PATH)/synapse/actions/generic:root/res/synapse/actions/generic \
-    $(LOCAL_PATH)/synapse/actions/governor:root/res/synapse/actions/governor \
-    $(LOCAL_PATH)/synapse/actions/gpuvolt:root/res/synapse/actions/gpuvolt \
-    $(LOCAL_PATH)/synapse/actions/ioset:root/res/synapse/actions/ioset \
-    $(LOCAL_PATH)/synapse/actions/led:root/res/synapse/actions/led \
-    $(LOCAL_PATH)/synapse/actions/printk:root/res/synapse/actions/printk \
-    $(LOCAL_PATH)/synapse/actions/sqlite:root/res/synapse/actions/sqlite \
-    $(LOCAL_PATH)/synapse/actions/voltage:root/res/synapse/actions/voltage
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -274,26 +219,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
     ro.telephony.ril_class=ExynosXMM6360RIL
-
-## SELinux
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.build.selinux=1
-
-## Root on Android M needs to be handled differently
-# SuperSU
-##PRODUCT_PACKAGES += \
-##    .installed_su_daemon \
-##    99SuperSUDaemon \
-##    SuperSU \
-##    daemonsu \
-##    install-recovery \
-##    libsupol.so \
-##    su \
-##    sugote \
-##    supolicy
-##
-##PRODUCT_PROPERTY_OVERRIDES += \
-##    persist.sys.root_access=0
 
 # Tethering Config
 PRODUCT_PROPERTY_OVERRIDES += \
