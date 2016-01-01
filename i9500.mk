@@ -57,6 +57,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
+    AudioWorkaround \
     audio.a2dp.default \
     audio.primary.universal5410 \
     audio.r_submix.default \
@@ -66,7 +67,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
     audio.offload.disable=1 \
-    media.aac_51_output_enabled=true
+    media.aac_51_output_enabled=true \
+    persist.incall.workaround=true
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
