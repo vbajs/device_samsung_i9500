@@ -50,12 +50,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.debuggable=1 \
     ro.secure=0
 
-# ANT+
-#PRODUCT_PACKAGES += \
-#    AntHalService \
-#    com.dsi.ant.antradio_library \
-#    libantradio
-
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
@@ -63,7 +57,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
-#    AudioWorkaround \
     audio.a2dp.default \
     audio.primary.universal5410 \
     audio.r_submix.default \
@@ -73,8 +66,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
     audio.offload.disable=1 \
-    media.aac_51_output_enabled=true \
-#    persist.incall.workaround=true
+    media.aac_51_output_enabled=true
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -235,11 +227,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=false \
     ro.kernel.android.checkjni=0
-
-#    dalvik.vm.dex2oat-filter=everything \
-#    dalvik.vm.dex2oat-flags=--no-watch-dog \
-#    dalvik.vm.image-dex2oat-filter=everything \
-#    dalvik.vm.isa.arm.features=lpae,div \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
