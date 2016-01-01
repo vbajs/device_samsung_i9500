@@ -86,8 +86,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     camera.universal5410 \
-    libhwjpeg \
-    libsamsung_symbols
+    libhwjpeg
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -212,9 +211,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:system/bin/cbd
 
 PRODUCT_PACKAGES += \
+    libsamsung_symbols \
     libsecril-client \
     libsecril-client-sap \
-    SamsungServiceMode
+    SamsungServiceMode \
+    ril-wrapper
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
