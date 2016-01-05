@@ -21,6 +21,15 @@
      for different hardware and product builds. -->
 <resources>
 
+    <!-- Set this to true to enable the platform's auto-power-save modes like doze and
+         app standby.  These are not enabled by default because they require a standard
+         cloud-to-device messaging service for apps to interact correctly with the modes
+         (such as to be able to deliver an instant message to the device even when it is
+         dozing).  This should be enabled if you have such services and expect apps to
+         correctly use them when installed on your device.  Otherwise, keep this disabled
+         so that applications can still use their own mechanisms. -->
+    <bool name="config_enableAutoPowerModes">true</bool>
+
     <!-- This string array should be overridden by the device to present a list of network
          attributes.  This is used by the connectivity manager to decide which networks can coexist
          based on the hardware -->
@@ -346,12 +355,20 @@
          flag is set for wifi displays.
     -->
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
-	
+
     <!-- Boolean to enable STK functionality on Samsung phones -->
     <bool name="config_samsung_stk">true</bool>
 
     <!-- Panel auto-brightness configuration value
     <integer name="config_panelAutoBrightnessValue">1</integer> -->
+
+    <!-- Ultrasound support for Mic/speaker path -->
+    <!-- Whether the default microphone audio source supports near-ultrasound frequencies
+         (range of 18 - 21 kHz). -->
+    <bool name="config_supportMicNearUltrasound">false</bool>
+    <!-- Whether the default speaker audio output path supports near-ultrasound frequencies
+         (range of 18 - 21 kHz). -->
+    <bool name="config_supportSpeakerNearUltrasound">false</bool>
 
     <!-- Indicate the device's Smart Cover coordinates.
          If none are provided, then the feature will be disabled.
@@ -372,14 +389,6 @@
          setting is used to determine, whether lidOpenRotation has to be
          applied. -->
     <bool name="config_hasRemovableLid">true</bool>
-
-    <!-- Ultrasound support for Mic/speaker path -->
-    <!-- Whether the default microphone audio source supports near-ultrasound frequencies
-         (range of 18 - 21 kHz). -->
-    <bool name="config_supportMicNearUltrasound">false</bool>
-    <!-- Whether the default speaker audio output path supports near-ultrasound frequencies
-         (range of 18 - 21 kHz). -->
-    <bool name="config_supportSpeakerNearUltrasound">false</bool>
 
     <!-- The RadioAccessFamilies supported by the device.
          Empty is viewed as "all".  Only used on devices which
