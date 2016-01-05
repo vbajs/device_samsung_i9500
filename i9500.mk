@@ -88,6 +88,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# GearCM
+PRODUCT_PACKAGES += \
+    OTAUpdates
+
 # GPS
 PRODUCT_PACKAGES += \
     libdmitry \
@@ -228,6 +232,8 @@ PRODUCT_PACKAGES += \
 # VM Config
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=false \
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.dex2oat-swap=false \
     ro.kernel.android.checkjni=0
 
 # Wi-Fi
