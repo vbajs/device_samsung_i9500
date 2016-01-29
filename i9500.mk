@@ -81,8 +81,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
 PRODUCT_PACKAGES += \
-    camera.universal5410 \
-    libhwjpeg
+    libhwjpeg \
+    Snap
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -215,7 +215,7 @@ PRODUCT_PACKAGES += \
     libsecril-client \
     libsecril-client-sap \
     SamsungServiceMode \
-    ril-wrapper
+    modemloader
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \

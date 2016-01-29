@@ -590,6 +590,11 @@ service pvrsrvctl /system/bin/pvrsrvctl
 #    group root
 #    oneshot
 
+# Parse hardware revision (needs to happen before cbd starts)
+service modemloader /system/bin/modemloader
+    class core
+    oneshot
+
 # CBD Radio Daemon
 service cpboot-daemon /system/bin/cbd -d -t xmm626 -b h -m h -p 13
     class main
