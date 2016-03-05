@@ -81,8 +81,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
 PRODUCT_PACKAGES += \
-    libhwjpeg \
-    Snap
+    libhwjpeg
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -143,7 +142,8 @@ PRODUCT_COPY_FILES += \
 # HW Composer
 PRODUCT_PACKAGES += \
     hwcomposer.exynos5 \
-    libion
+    libion \
+    libion_exynos
 
 # IR
 PRODUCT_PACKAGES += \
