@@ -608,6 +608,12 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     user gps
     group system inet net_raw sdcard_rw
 
+# Sensorhub service
+service sensorhubservice /system/bin/sensorhubservice
+    class main
+    user system
+    group input
+
 # BT Tethering
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
