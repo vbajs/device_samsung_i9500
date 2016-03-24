@@ -50,7 +50,7 @@ public class ExynosXMM6360RIL extends RIL {
     private static final int RIL_UNSOL_AM = 11010;
     private static final int RIL_UNSOL_SIM_PB_READY = 11021;
 
-    private static final int RIL_REQUEST_DIAL_EMERGENCY_CALL = 10016;
+    private static final int RIL_REQUEST_DIAL_EMERGENCY_CALL = 10001;
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         super(context, preferredNetworkType, cdmaSubscription, null);
