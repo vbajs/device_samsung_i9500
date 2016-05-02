@@ -391,5 +391,5 @@
     <bool name="config_hasRemovableLid">true</bool>
 
     <!-- Our modem doesn't support this query yet -->
-    <string name="config_radio_access_family">GSM|WCDMA|LTE</string>
+    <string name="config_radio_access_family">GSM|HS</string>
 </resources>
