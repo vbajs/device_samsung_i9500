@@ -67,6 +67,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
+    audio_hal.force_voice_config=wide \
     audio.offload.disable=1 \
     media.aac_51_output_enabled=true \
     persist.incall.workaround=true
@@ -78,7 +79,6 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    camera.disable_zsl_mode=1 \
     camera2.portability.force_api=1
 
 PRODUCT_PACKAGES += \
@@ -138,14 +138,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 # HW Composer
 PRODUCT_PACKAGES += \
     hwcomposer.exynos5 \
-    libion \
-    libion_exynos
+    libion
 
 # IR
 PRODUCT_PACKAGES += \
@@ -209,6 +210,10 @@ PRODUCT_PACKAGES += \
 # Radio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:system/bin/cbd
+
+PRODUCT_PACKAGES += \
+    libxml2 \
+    libprotobuf-cpp-full
 
 PRODUCT_PACKAGES += \
     libsamsung_symbols \
