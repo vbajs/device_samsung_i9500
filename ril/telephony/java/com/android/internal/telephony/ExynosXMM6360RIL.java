@@ -44,16 +44,20 @@ public class ExynosXMM6360RIL extends RIL {
      * SAMSUNG REQUESTS
      **********************************************************/
     static final boolean RILJ_LOGD = true;
-    static final boolean RILJ_LOGV = false;
+    static final boolean RILJ_LOGV = true;
+
+    private static final int RIL_REQUEST_DIAL_EMERGENCY_CALL = 10001;
+    private static final int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002;
+    private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT = 11003;
 
     private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
     private static final int RIL_UNSOL_AM = 11010;
     private static final int RIL_UNSOL_SIM_PB_READY = 11021;
 
-    private static final int RIL_REQUEST_DIAL_EMERGENCY_CALL = 10001;
+    private static final int RIL_UNSOL_WB_AMR_STATE = 20017;
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType, int cdmaSubscription) {
-        super(context, preferredNetworkType, cdmaSubscription, null);
+        this(context, preferredNetworkType, cdmaSubscription, null);
     }
 
     public ExynosXMM6360RIL(Context context, int preferredNetworkType,
@@ -195,6 +199,7 @@ public class ExynosXMM6360RIL extends RIL {
             dc.als = p.readInt();
             dc.isVoice = (0 != p.readInt());
 
+            boolean isVideo = (0 != p.readInt());   // Samsung
             int call_type = p.readInt();            // Samsung CallDetails
             int call_domain = p.readInt();          // Samsung CallDetails
             String csv = p.readString();            // Samsung CallDetails
@@ -385,18 +390,8 @@ public class ExynosXMM6360RIL extends RIL {
 
         /* Remap incorrect respones or ignore them */
         switch (origResponse) {
-            case 11055:
-                newResponse = RIL_UNSOL_ON_SS;
-                break;
-            case 1041:
-                newResponse = RIL_UNSOL_STK_CC_ALPHA_NOTIFY;
-                break;
-            case 11031:
-                newResponse = RIL_UNSOL_UICC_SUBSCRIPTION_STATUS_CHANGED;
-                break;
-            case 1038: // RIL_UNSOL_TETHERED_MODE_STATE_CHANGED
-            case 1039: // RIL_UNSOL_DATA_NETWORK_STATE_CHANGED
-            case 1042: // RIL_UNSOL_QOS_STATE_CHANGED_IND
+            case RIL_UNSOL_STK_CALL_CONTROL_RESULT:
+            case RIL_UNSOL_WB_AMR_STATE:
             case RIL_UNSOL_DEVICE_READY_NOTI: /* Registrant notification */
             case RIL_UNSOL_SIM_PB_READY: /* Registrant notification */
                 Rlog.v(RILJ_LOG_TAG,
