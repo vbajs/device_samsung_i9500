@@ -646,7 +646,7 @@ service scranton_RD /system/bin/scranton_RD
 service mobicore /system/bin/mcDriverDaemon \
     -r /system/vendor/firmware/mcRegistry/FFFFFFFF000000000000000000000001.drbin \
     -r /system/vendor/firmware/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-    class core
+    class main
     user system
     group system
     oneshot
