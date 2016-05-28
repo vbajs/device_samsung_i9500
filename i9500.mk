@@ -42,7 +42,8 @@ PRODUCT_COPY_FILES += \
 
 # AAPT Config
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
 
 # ADB Debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -223,10 +224,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Tethering Config
 PRODUCT_PROPERTY_OVERRIDES += \
     net.tethering.noprovisioning=true
-
-# USB
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
 
 # VM Config
 PRODUCT_PROPERTY_OVERRIDES += \
