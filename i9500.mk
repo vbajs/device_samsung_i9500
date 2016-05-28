@@ -82,11 +82,16 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
 PRODUCT_PACKAGES += \
-    libhwjpeg
+    Snap
 
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
+
+# Display
+PRODUCT_PACKAGES += \
+    libion \
+    libfimg
 
 # GearCM
 PRODUCT_PACKAGES += \
@@ -143,11 +148,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-# HW Composer
-PRODUCT_PACKAGES += \
-    hwcomposer.exynos5 \
-    libion
-
 # IR
 PRODUCT_PACKAGES += \
     consumerir.universal5410
@@ -174,14 +174,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
-# Memory Tracker HAL
-PRODUCT_PACKAGES += \
-    memtrack.exynos5
-
-# MobiCore
-PRODUCT_PACKAGES += \
-    mcDriverDaemon
-
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
@@ -194,14 +186,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
-
-# OMX
-PRODUCT_PACKAGES += \
-    libExynosOMX_Core \
-    libOMX.Exynos.AVC.Decoder \
-    libOMX.Exynos.MPEG4.Decoder \
-    libOMX.Exynos.VP8.Decoder \
-    libstagefrighthw
 
 # Power
 PRODUCT_PACKAGES += \
@@ -252,6 +236,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=45
+
+# call Samsung LSI board support package
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
