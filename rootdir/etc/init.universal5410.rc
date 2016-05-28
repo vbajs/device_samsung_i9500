@@ -456,6 +456,7 @@ on post-fs-data
 
 # Added for Mobicore
     mkdir /data/app/mcRegistry 0775 system system
+    mkdir /system/app/mcRegistry/TbStorage 0775 system system
 
 # Added for Playready DRM Support
     mkdir /data/system/databases 0775 system system
@@ -645,9 +646,10 @@ service scranton_RD /system/bin/scranton_RD
 service mobicore /system/bin/mcDriverDaemon \
     -r /system/vendor/firmware/mcRegistry/FFFFFFFF000000000000000000000001.drbin \
     -r /system/vendor/firmware/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-    class main
-    user drmrpc
-    group drmrpc
+    class core
+    user system
+    group system
+    oneshot
 
 service charger /sbin/healthd -c
     class charger
