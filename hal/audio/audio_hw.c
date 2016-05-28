@@ -205,6 +205,8 @@ struct audio_device {
     int es325_preset;
     int es325_mode;
 
+    bool two_mic_disabled;
+
     int hdmi_drv_fd;    /* either an fd >= 0 or -1 */
     audio_channel_mask_t in_channel_mask;
 
