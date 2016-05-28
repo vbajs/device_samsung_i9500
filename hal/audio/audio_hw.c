@@ -140,14 +140,6 @@ struct pcm_config pcm_config_sco = {
     .format = PCM_FORMAT_S16_LE,
 };
 
-struct pcm_config pcm_config_sco_wide = {
-    .channels = 1,
-    .rate = 16000,
-    .period_size = SCO_CAPTURE_PERIOD_SIZE,
-    .period_count = SCO_CAPTURE_PERIOD_COUNT,
-    .format = PCM_FORMAT_S16_LE,
-};
-
 struct pcm_config pcm_config_voice = {
     .channels = 2,
     .rate = 8000,
@@ -636,9 +628,8 @@ static void force_non_hdmi_out_standby(struct audio_device *adev)
         out = adev->outputs[type];
         if (type == OUTPUT_HDMI || !out)
             continue;
-        pthread_mutex_lock(&out->lock);
+        /* This will never recurse more than 2 levels deep. */
         do_out_standby(out);
-        pthread_mutex_unlock(&out->lock);
     }
 }
 
@@ -649,8 +640,6 @@ static void force_non_hdmi_out_standby(struct audio_device *adev)
 /* must be called with the hw device mutex locked, OK to hold other mutexes */
 static void start_bt_sco(struct audio_device *adev)
 {
-    struct pcm_config *sco_config;
-
     if (adev->pcm_sco_rx != NULL || adev->pcm_sco_tx != NULL) {
         ALOGW("%s: SCO PCMs already open!\n", __func__);
         return;
@@ -658,16 +647,10 @@ static void start_bt_sco(struct audio_device *adev)
 
     ALOGV("%s: Opening SCO PCMs", __func__);
 
-    if (adev->wb_amr) {
-        sco_config = &pcm_config_sco_wide;
-    } else {
-        sco_config = &pcm_config_sco;
-    }
-
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
                                 PCM_OUT | PCM_MONOTONIC,
-                                sco_config);
+                                &pcm_config_sco);
     if (adev->pcm_sco_rx != NULL && !pcm_is_ready(adev->pcm_sco_rx)) {
         ALOGE("%s: cannot open PCM SCO RX stream: %s",
               __func__, pcm_get_error(adev->pcm_sco_rx));
@@ -677,7 +660,7 @@ static void start_bt_sco(struct audio_device *adev)
     adev->pcm_sco_tx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
                                 PCM_IN,
-                                sco_config);
+                                &pcm_config_sco);
     if (adev->pcm_sco_tx && !pcm_is_ready(adev->pcm_sco_tx)) {
         ALOGE("%s: cannot open PCM SCO TX stream: %s",
               __func__, pcm_get_error(adev->pcm_sco_tx));
@@ -1332,11 +1315,9 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
+    lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
-
-        lock_all_outputs(adev);
-
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1382,9 +1363,8 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
                 start_bt_sco(adev);
             }
         }
-
-        unlock_all_outputs(adev, NULL);
     }
+    unlock_all_outputs(adev, NULL);
 
     str_parms_destroy(parms);
     return ret;
@@ -1884,7 +1864,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->channel_mask = config->channel_mask;
         out->config = pcm_config_hdmi_multi;
         out->config.rate = config->sample_rate;
-        out->config.channels = popcount(config->channel_mask);
+        out->config.channels = audio_channel_count_from_out_mask(config->channel_mask);
         out->pcm_device = PCM_DEVICE;
         type = OUTPUT_HDMI;
     } else if (flags & AUDIO_OUTPUT_FLAG_DEEP_BUFFER) {
@@ -1956,7 +1936,7 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
     out_standby(&stream->common);
     adev = (struct audio_device *)dev;
     pthread_mutex_lock(&adev->lock_outputs);
-    for (type = 0; type < OUTPUT_TOTAL; type++) {
+    for (type = 0; type < OUTPUT_TOTAL; ++type) {
         if (adev->outputs[type] == (struct stream_out *) stream) {
             adev->outputs[type] = NULL;
             break;
