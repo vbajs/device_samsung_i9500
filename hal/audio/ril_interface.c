@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "audio_hw_primary_ril"
-#define LOG_NDEBUG 0
+#define LOG_TAG "audio_hw_primary"
+/*#define LOG_NDEBUG 0*/
 
 #include <errno.h>
 #include <dlfcn.h>
@@ -44,7 +44,7 @@ void ril_register_set_wb_amr_callback(void *function, void *data)
 set the wideband AMR state */
 static int ril_set_wb_amr_callback(void *ril_client __unused,
                                    const void *data,
-                                   size_t datalen __unused)
+                                   size_t datalen)
 {
     int enable = ((int *)data)[0];
 
@@ -69,7 +69,7 @@ static int ril_connect_if_required(struct ril_handle *ril)
 
     rc = Connect_RILD(ril->client);
     if (rc != RIL_CLIENT_ERR_SUCCESS) {
-        ALOGE("Connect_RILD() failed: %s", strerror(errno));
+        ALOGE("Connect_RILD() failed");
         return -1;
     }
 
@@ -150,8 +150,7 @@ int ril_set_call_volume(struct ril_handle *ril,
     return rc;
 }
 
-int ril_set_call_audio_path(struct ril_handle *ril,
-                            enum _AudioPath path)
+int ril_set_call_audio_path(struct ril_handle *ril, enum _AudioPath path)
 {
     int rc;
 

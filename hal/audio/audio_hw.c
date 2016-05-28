@@ -360,11 +360,19 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume);
 
 static int open_hdmi_driver(struct audio_device *adev)
 {
+    char *hdmi_node;
+
+#ifndef USES_NEW_HDMI
+    hdmi_node = "/dev/video16";
+#else
+    hdmi_node = "/dev/graphics/fb1";
+#endif
+
     if (adev->hdmi_drv_fd < 0) {
-        adev->hdmi_drv_fd = open("/dev/video16", O_RDWR);
+        adev->hdmi_drv_fd = open(hdmi_node, O_RDWR);
         if (adev->hdmi_drv_fd < 0)
-            ALOGE("%s cannot open video16 - error: %s\n",
-                  __func__, strerror(errno));
+            ALOGE("%s cannot open %s - error: %s\n",
+                  __func__, hdmi_node, strerror(errno));
     }
     return adev->hdmi_drv_fd;
 }
@@ -459,9 +467,8 @@ static void select_devices(struct audio_device *adev)
     int new_route_id;
     int new_es325_preset = -1;
 
-#ifndef HDMI_INCAPABLE
-    enable_hdmi_audio(adev, adev->out_device & AUDIO_DEVICE_OUT_AUX_DIGITAL);
-#endif
+    if (adev->hdmi_drv_fd == 0)
+        enable_hdmi_audio(adev, adev->out_device & AUDIO_DEVICE_OUT_AUX_DIGITAL);
 
     new_route_id = (1 << (input_source_id + OUT_DEVICE_CNT)) + (1 << output_device_id);
     if (new_route_id == adev->cur_route_id) {
@@ -621,8 +628,9 @@ static void force_non_hdmi_out_standby(struct audio_device *adev)
         out = adev->outputs[type];
         if (type == OUTPUT_HDMI || !out)
             continue;
-        /* This will never recurse more than 2 levels deep. */
+        pthread_mutex_lock(&out->lock);
         do_out_standby(out);
+        pthread_mutex_unlock(&out->lock);
     }
 }
 
@@ -633,6 +641,8 @@ static void force_non_hdmi_out_standby(struct audio_device *adev)
 /* must be called with the hw device mutex locked, OK to hold other mutexes */
 static void start_bt_sco(struct audio_device *adev)
 {
+    struct pcm_config *sco_config;
+
     if (adev->pcm_sco_rx != NULL || adev->pcm_sco_tx != NULL) {
         ALOGW("%s: SCO PCMs already open!\n", __func__);
         return;
@@ -640,10 +650,16 @@ static void start_bt_sco(struct audio_device *adev)
 
     ALOGV("%s: Opening SCO PCMs", __func__);
 
+    if (adev->wb_amr) {
+        sco_config = &pcm_config_sco_wide;
+    } else {
+        sco_config = &pcm_config_sco;
+    }
+
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
                                 PCM_OUT | PCM_MONOTONIC,
-                                &pcm_config_sco);
+                                sco_config);
     if (adev->pcm_sco_rx != NULL && !pcm_is_ready(adev->pcm_sco_rx)) {
         ALOGE("%s: cannot open PCM SCO RX stream: %s",
               __func__, pcm_get_error(adev->pcm_sco_rx));
@@ -653,7 +669,7 @@ static void start_bt_sco(struct audio_device *adev)
     adev->pcm_sco_tx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
                                 PCM_IN,
-                                &pcm_config_sco);
+                                sco_config);
     if (adev->pcm_sco_tx && !pcm_is_ready(adev->pcm_sco_tx)) {
         ALOGE("%s: cannot open PCM SCO TX stream: %s",
               __func__, pcm_get_error(adev->pcm_sco_tx));
@@ -817,6 +833,10 @@ static void start_call(struct audio_device *adev)
     default:
         adev->two_mic_control = false;
         break;
+    }
+
+    if (adev->two_mic_disabled) {
+        adev->two_mic_control = false;
     }
 
     if (adev->two_mic_control) {
@@ -1304,9 +1324,11 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
-    lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
+
+        lock_all_outputs(adev);
+
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1322,14 +1344,14 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
                 do_out_standby(out);
             }
 
-#ifndef HDMI_INCAPABLE
-            if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
-                !adev->outputs[OUTPUT_HDMI] ||
-                adev->outputs[OUTPUT_HDMI]->standby)) {
-                adev->out_device = output_devices(out) | val;
-                select_devices(adev);
+            if (adev->hdmi_drv_fd == 0) {
+                if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
+                                      !adev->outputs[OUTPUT_HDMI] ||
+                                      adev->outputs[OUTPUT_HDMI]->standby)) {
+                    adev->out_device = output_devices(out) | val;
+                    select_devices(adev);
+                }
             }
-#endif
 
             out->device = val;
             adev->out_device = output_devices(out) | val;
@@ -1352,8 +1374,9 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
                 start_bt_sco(adev);
             }
         }
+
+        unlock_all_outputs(adev, NULL);
     }
-    unlock_all_outputs(adev, NULL);
 
     str_parms_destroy(parms);
     return ret;
@@ -1418,13 +1441,7 @@ static int out_set_volume(struct audio_stream_out *stream,
     struct stream_out *out = (struct stream_out *)stream;
     struct audio_device *adev = out->dev;
 
-    /* The mutex lock is not needed, because the client
-     * is not allowed to close the stream concurrently with this API
-     *  pthread_mutex_lock(&adev->lock_outputs);
-     */
-    bool is_HDMI = out == adev->outputs[OUTPUT_HDMI];
-    /*  pthread_mutex_unlock(&adev->lock_outputs); */
-    if (is_HDMI) {
+    if (out == adev->outputs[OUTPUT_HDMI]) {
         /* only take left channel into account: the API is for stereo anyway */
         out->muted = (left == 0.0f);
         return 0;
@@ -1711,20 +1728,18 @@ static void in_apply_ramp(struct stream_in *in, int16_t *buffer, size_t frames)
 
     frames = (frames < in->ramp_frames) ? frames : in->ramp_frames;
 
-    if (in->channel_mask == AUDIO_CHANNEL_IN_MONO)
-        for (i = 0; i < frames; i++)
-        {
+    if (in->channel_mask == AUDIO_CHANNEL_IN_MONO) {
+        for (i = 0; i < frames; i++) {
             buffer[i] = (int16_t)((buffer[i] * vol) >> 16);
             vol += step;
         }
-    else
-        for (i = 0; i < frames; i++)
-        {
+    } else {
+        for (i = 0; i < frames; i++) {
             buffer[2*i] = (int16_t)((buffer[2*i] * vol) >> 16);
             buffer[2*i + 1] = (int16_t)((buffer[2*i + 1] * vol) >> 16);
             vol += step;
         }
-
+    }
 
     in->ramp_vol = vol;
     in->ramp_frames -= frames;
@@ -1861,7 +1876,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->channel_mask = config->channel_mask;
         out->config = pcm_config_hdmi_multi;
         out->config.rate = config->sample_rate;
-        out->config.channels = audio_channel_count_from_out_mask(config->channel_mask);
+        out->config.channels = popcount(config->channel_mask);
         out->pcm_device = PCM_DEVICE;
         type = OUTPUT_HDMI;
     } else if (flags & AUDIO_OUTPUT_FLAG_DEEP_BUFFER) {
@@ -1933,7 +1948,7 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
     out_standby(&stream->common);
     adev = (struct audio_device *)dev;
     pthread_mutex_lock(&adev->lock_outputs);
-    for (type = 0; type < OUTPUT_TOTAL; ++type) {
+    for (type = 0; type < OUTPUT_TOTAL; type++) {
         if (adev->outputs[type] == (struct stream_out *) stream) {
             adev->outputs[type] = NULL;
             break;
@@ -2106,10 +2121,14 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
 
     *stream_in = NULL;
 
-    /* Respond with a request for stereo if a different format is given. */
-    if (config->channel_mask != AUDIO_CHANNEL_IN_STEREO) {
-        config->channel_mask = AUDIO_CHANNEL_IN_STEREO;
-        return -EINVAL;
+    /* Respond with a request for mono if a different format is given. */
+    if (config->channel_mask != AUDIO_CHANNEL_IN_MONO &&
+            config->channel_mask != AUDIO_CHANNEL_IN_FRONT_BACK) {
+        if (!(adev->in_call && adev->two_mic_control)) {
+            // Not in a call and no explicit FRONT_BACK input requested
+            config->channel_mask = AUDIO_CHANNEL_IN_MONO;
+            return -EINVAL;
+        }
     }
 
     in = (struct stream_in *)calloc(1, sizeof(struct stream_in));
@@ -2274,8 +2293,26 @@ static int adev_open(const hw_module_t* module, const char* name,
 
     /* RIL */
     ril_open(&adev->ril);
-    /* register callback for wideband AMR setting */
-    ril_register_set_wb_amr_callback(adev_set_wb_amr_callback, (void *)adev);
+
+    char voice_config[PROPERTY_VALUE_MAX];
+
+    if (property_get("audio_hal.force_voice_config", voice_config, "") > 0) {
+        if ((strncmp(voice_config, "narrow", 6)) == 0)
+            adev->wb_amr = false;
+        else if ((strncmp(voice_config, "wide", 4)) == 0)
+            adev->wb_amr = true;
+        ALOGV("%s: Forcing voice config: %s", __func__, voice_config);
+    } else {
+        /* register callback for wideband AMR setting */
+        ril_register_set_wb_amr_callback(adev_set_wb_amr_callback, (void *)adev);
+    }
+
+    /* Two mic control */
+    if (property_get_bool("audio_hal.disable_two_mic", false))
+        adev->two_mic_disabled = true;
+
+    /* HDMI */
+    open_hdmi_driver(adev);
 
     *device = &adev->hw_device.common;
 

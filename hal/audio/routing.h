@@ -227,17 +227,17 @@ const struct route_config media_bt_sco_headset_out = {
 const struct route_config camcorder_speaker = {
     "media-speaker",
     "device-speaker",
-    "media-builtin-mic",
-    "device-builtin-mic",
+    "media-second-mic",
+    "device-back-mic",
     { ES325_PRESET_CAMCORDER,
       ES325_PRESET_CAMCORDER }
 };
 
 const struct route_config camcorder_headphones = {
     "media-headphones",
-    "none",
+    "device-headphones",
     "media-second-mic",
-    "none",
+    "device-back-mic",
     { ES325_PRESET_CAMCORDER,
       ES325_PRESET_CAMCORDER }
 };
@@ -245,8 +245,8 @@ const struct route_config camcorder_headphones = {
 const struct route_config voice_rec_speaker = {
     "voice-rec-speaker",
     "device-speaker",
-    "voice-rec-two-mic",
-    "device-two-mic",
+    "voice-rec-mic",
+    "device-builtin-mic",
     { ES325_PRESET_ASRA_HANDHELD,
       ES325_PRESET_ASRA_DESKTOP }
 };
@@ -254,8 +254,8 @@ const struct route_config voice_rec_speaker = {
 const struct route_config voice_rec_headphones = {
     "voice-rec-headphones",
     "device-headphones",
-    "voice-rec-two-mic",
-    "device-two-mic",
+    "voice-rec-mic",
+    "device-builtin-mic",
     { ES325_PRESET_ASRA_HANDHELD,
       ES325_PRESET_ASRA_DESKTOP }
 };
@@ -272,8 +272,8 @@ const struct route_config voice_rec_headset = {
 const struct route_config communication_speaker = {
     "communication-speaker",
     "device-speaker",
-    "communication-speaker-two-mic",
-    "device-two-mic",
+    "communication-speaker-mic",
+    "device-builtin-mic",
     { ES325_PRESET_VOIP_HANDHELD,
       ES325_PRESET_VOIP_DESKTOP }
 };
@@ -281,8 +281,8 @@ const struct route_config communication_speaker = {
 const struct route_config communication_earpiece = {
     "communication-earpiece",
     "device-earpiece",
-    "communication-earpiece-two-mic",
-    "device-two-mic",
+    "communication-earpiece-mic",
+    "device-builtin-mic",
     { ES325_PRESET_VOIP_HANDHELD,
       ES325_PRESET_VOIP_DESKTOP }
 };
@@ -290,8 +290,8 @@ const struct route_config communication_earpiece = {
 const struct route_config communication_headphones = {
     "communication-headphones",
     "device-headphones",
-    "communication-earpiece-two-mic",
-    "device-two-mic",
+    "communication-earpiece-mic",
+    "device-builtin-mic",
     { ES325_PRESET_VOIP_HEADPHONES,
       ES325_PRESET_VOIP_HP_DESKTOP }
 };
@@ -308,8 +308,8 @@ const struct route_config communication_headset = {
 const struct route_config speaker_and_headphones = {
     "speaker-and-headphones",
     "device-speaker",
-    "scenario-two-mic-speaker-default",
-    "device-two-mic",
+    "scenario-builtin-mic-default",
+    "device-builtin-mic",
     { ES325_PRESET_CURRENT,
       ES325_PRESET_CURRENT }
 };

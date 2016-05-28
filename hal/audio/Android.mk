@@ -14,18 +14,19 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# Audio HAL
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := audio.primary.$(TARGET_BOOTLOADER_BOARD_NAME)
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := \
     audio_hw.c \
     ril_interface.c
 
-ifeq ($(BOARD_HDMI_INCAPABLE), true)
-	LOCAL_CFLAGS += -DHDMI_INCAPABLE
+ifeq ($(BOARD_USES_NEW_HDMI), true)
+    LOCAL_CFLAGS += -DUSES_NEW_HDMI
 endif
 
 LOCAL_C_INCLUDES += \
