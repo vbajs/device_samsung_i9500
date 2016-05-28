@@ -140,6 +140,14 @@ struct pcm_config pcm_config_sco = {
     .format = PCM_FORMAT_S16_LE,
 };
 
+struct pcm_config pcm_config_sco_wide = {
+    .channels = 1,
+    .rate = 16000,
+    .period_size = SCO_CAPTURE_PERIOD_SIZE,
+    .period_count = SCO_CAPTURE_PERIOD_COUNT,
+    .format = PCM_FORMAT_S16_LE,
+};
+
 struct pcm_config pcm_config_voice = {
     .channels = 2,
     .rate = 8000,
@@ -201,12 +209,10 @@ struct audio_device {
     bool bluetooth_nrec;
     bool wb_amr;
     bool two_mic_control;
+    bool two_mic_disabled;
 
     int es325_preset;
     int es325_mode;
-
-    bool two_mic_disabled;
-
     int hdmi_drv_fd;    /* either an fd >= 0 or -1 */
     audio_channel_mask_t in_channel_mask;
 
