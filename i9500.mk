@@ -89,6 +89,7 @@ PRODUCT_PACKAGES += \
 
 # GearCM
 PRODUCT_PACKAGES += \
+    AdvancedDisplay \
     OTAUpdates
 
 # GPS
