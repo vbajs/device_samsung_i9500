@@ -1,10 +1,13 @@
 ##########################
 # Devices
 #
+/dev/akm8963                 u:object_r:sensors_device:s0
+/dev/ssp_sensorhub           u:object_r:sensors_device:s0
+
 /dev/bcm2079x                u:object_r:nfc_device:s0
 /dev/sec-nfc                 u:object_r:nfc_device:s0
 
-/dev/ttySAC3                 u:object_r:bluetooth_device:s0
+/dev/ttySAC0                 u:object_r:bluetooth_device:s0
 
 /dev/s5p-smem                u:object_r:secmem_device:s0
 /dev/mobicore                u:object_r:tee_device:s0
@@ -20,10 +23,11 @@
 /dev/ehci_power              u:object_r:mif_device:s0
 /dev/mipi-lli/lli_control    u:object_r:mif_device:s0
 
-/dev/ttySAC[0-9]*            u:object_r:gps_device:s0
+/dev/ttySAC[1-9]*            u:object_r:gps_device:s0
 
 /dev/block/mmcblk0p[0-9]*    u:object_r:emmcblk_device:s0
 
+/dev/btlock                  u:object_r:btlock_device:s0
 /dev/rfkill                  u:object_r:rfkill_device:s0
 
 ####################################
