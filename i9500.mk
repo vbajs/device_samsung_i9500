@@ -87,9 +87,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.qcom.misc.disable=1
 
-PRODUCT_PACKAGES += \
-    Snap
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
