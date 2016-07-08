@@ -20,4 +20,4 @@
 /devices/platform/dw_mmc.2/mmc_host/mmc2*               auto            auto        defaults                                                                        voldmanaged=sdcard1:auto,encryptable=userdata
 
 # USB storage
-/devices/platform/exynos-dwc3.0/exynos-xhci.0*          auto            auto        defaults                                                                        voldmanaged=usbdisk:auto
+/devices/platform/exynos-dwc3.0/exynos-xhci.0*          auto            auto        defaults                                                                        voldmanaged=usb:auto
