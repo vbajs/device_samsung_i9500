@@ -3,7 +3,6 @@
 type sensorhubservice, domain;
 type sensorhubservice_exec, exec_type, file_type;
 
-allow sensorhubservice device:chr_file { read write open };
 allow sensorhubservice kernel:system module_request;
 allow sensorhubservice servicemanager:binder transfer;
 allow sensorhubservice sysfs:file write;

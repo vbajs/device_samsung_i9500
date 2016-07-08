@@ -1,2 +1,2 @@
-allow shell gps_device:chr_file { read write getattr ioctl };
+allow shell gps_device:chr_file { getattr ioctl };
 allow shell kernel:system module_request;

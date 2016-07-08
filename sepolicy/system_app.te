@@ -1,3 +1,2 @@
 allow system_app kernel:system module_request;
 allow system_app sensorhubservice:binder call;
-allow system_app sysfs:file write;
