@@ -1,0 +1,1 @@
+allow platform_app kernel:system module_request;
