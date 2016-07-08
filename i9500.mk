@@ -80,6 +80,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera.qcom.misc.disable=1
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
