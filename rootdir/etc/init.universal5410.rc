@@ -514,9 +514,9 @@ on boot
 
     write /sys/class/thermal/thermal_zone0/boost_mode 1
 
-# Set higher USB charging values as AC ones
-    write /sys/devices/platform/sec-battery/sdp_input_curr 900
-    write /sys/devices/platform/sec-battery/sdp_chrg_curr 800
+## Set higher USB charging values as AC ones
+#    write /sys/devices/platform/sec-battery/sdp_input_curr 900
+#    write /sys/devices/platform/sec-battery/sdp_chrg_curr 800
 
 # Reset mDNIe mode & scenario
     write /sys/class/mdnie/mdnie/scenario 0
@@ -527,14 +527,14 @@ on boot
     write /proc/sys/net/core/rmem_max  8388608
     write /proc/sys/net/core/wmem_max  8388608
 
-# Arizona Sound Control Initialization
-    write /sys/class/misc/wolfson_control/eq_sp_freqs "0x0FA4 0x0404 0x0170 0x1DB9 0xF233 0x040B 0x08B6 0x1977 0xF45E 0x040A 0x114C 0x0B43 0xF7FA 0x040A 0x1F97 0xF41A 0x0400 0x1068"
-    write /sys/class/misc/wolfson_control/eq_sp_gain_1 -5
-    write /sys/class/misc/wolfson_control/eq_sp_gain_2 1
-    write /sys/class/misc/wolfson_control/eq_sp_gain_3 0
-    write /sys/class/misc/wolfson_control/eq_sp_gain_4 4
-    write /sys/class/misc/wolfson_control/eq_sp_gain_5 3
-    write /sys/class/misc/wolfson_control/switch_eq_speaker 1
+## Arizona Sound Control Initialization
+#    write /sys/class/misc/wolfson_control/eq_sp_freqs "0x0FA4 0x0404 0x0170 0x1DB9 0xF233 0x040B 0x08B6 0x1977 0xF45E 0x040A 0x114C 0x0B43 0xF7FA 0x040A 0x1F97 0xF41A 0x0400 0x1068"
+#    write /sys/class/misc/wolfson_control/eq_sp_gain_1 -5
+#    write /sys/class/misc/wolfson_control/eq_sp_gain_2 1
+#    write /sys/class/misc/wolfson_control/eq_sp_gain_3 0
+#    write /sys/class/misc/wolfson_control/eq_sp_gain_4 4
+#    write /sys/class/misc/wolfson_control/eq_sp_gain_5 3
+#    write /sys/class/misc/wolfson_control/switch_eq_speaker 1
 
 on charger
 # Set CPU governor to powersave
@@ -556,9 +556,6 @@ on charger
 
 # EHCI runtime enable for LPA
     write /sys/devices/platform/s5p-ehci/power/control auto
-
-# Do not set any USB mode while charging
-    setprop sys.usb.config charging
 
 # Reduce and Lock Screen Brightness
     chown system system /sys/class/backlight/panel/brightness
@@ -662,9 +659,9 @@ on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
     write /sys/block/mmcblk1/queue/iosched/slice_idle 0
-# Speaker EQ Hack
-    write /sys/class/misc/wolfson_control/switch_eq_speaker 0
-    write /sys/class/misc/wolfson_control/switch_eq_speaker 1
+## Speaker EQ Hack
+#    write /sys/class/misc/wolfson_control/switch_eq_speaker 0
+#    write /sys/class/misc/wolfson_control/switch_eq_speaker 1
 # Switch to balanced mode after boot for better UX
     setprop sys.perf.profile 1
 
