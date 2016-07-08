@@ -1,0 +1,2 @@
+allow hostapd kernel:system module_request;
+allow hostapd rfkill_device:chr_file { read open };
