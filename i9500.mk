@@ -76,6 +76,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
     $(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
 
+# Browser
+PRODUCT_PACKAGES += \
+    Gello
+
 # Camera
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
