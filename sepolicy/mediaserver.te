@@ -11,4 +11,4 @@ allow mediaserver efs_file:file r_file_perms;
 allow mediaserver sensorservice_service:service_manager { find };
 allow mediaserver system_server:unix_stream_socket { read write };
 
-allow mediaserver system_data_file:file { write open };
+allow mediaserver system_data_file:file { open };
