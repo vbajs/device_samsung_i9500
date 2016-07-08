@@ -328,7 +328,7 @@ on post-fs
 
 # Permissions for MDNIe
     chown system system /sys/class/mdnie/mdnie/mode
-    chown system media_rw /sys/class/mdnie/mdnie/scenario
+    chown system system /sys/class/mdnie/mdnie/scenario
     chown system system /sys/class/mdnie/mdnie/accessibility
 
 # Permissions for GScaler Debug
