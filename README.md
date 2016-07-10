@@ -2,15 +2,14 @@ Device configuration for Samsung Galaxy S4 Exynos (GT-I9500)
 
 Copyright 2016, The CyanogenMod Project / GearCM
 
-Current build version: WIP
+Current build version: 20160710 Stable
 
 Actual Status:
 
-- Issues with VOIP Calls (due to some standby issue, Audio HAL needs to be fixed)
-- Mixer Paths needs to be entirely reconfigured to get proper audio quality
-- Wi-Fi isn't 100% stable, the issue seems to be on the kernel side
-- Incompatibilities with Snap Camera needs to be fixed (not so important though)
-- Camera isn't 100% stable, there are some issues with ION & v4l2
-- SIM-Card STK Toolkit doesn't work properly, SMSs aren't properly sent (corrupted or something)
-- HDMI Audio isn't 100% stable, sometimes doesn't work, sometimes crashes the device after some minutes
-- SELinux policies aren't ready yet, so the device is running without it until they are properly fixed
+- Audio HAL isn't working correctly, causing VOIP issues, HDMI audio instabilities and mixer paths conflicts
+- STK Toolkit isn't working yet, SMSs aren't properly sent (RIL issue)
+- SELinux policies are almost complete, with just 2 missing rules
+- Wireless Display (or Miracast if you like) stream is corrupted, buffer issues
+- Adoptable Storage isn't stable, crashes while encrypting the external storage (Kernel Panic). 
+  Even if it crashes though, the device may reboot correctly and it will work just like the crash never happened,
+  or it may bootloop unless you remove the MicroSD (scatterwalk crypto crash)
