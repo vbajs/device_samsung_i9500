@@ -219,6 +219,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.checkjni=false \
     dalvik.vm.dex2oat-swap=false \
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.image-dex2oat-filter=speed \
+    ro.sys.fw.dex2oat_thread_count=4 \
     ro.kernel.android.checkjni=0
 
 # Wi-Fi
