@@ -2,41 +2,41 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM 13</RomName>
-  <VersionName>2015xxxx</VersionName>
+  <VersionName>20160710</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">2015xxxx</VersionNumber>
+  <VersionNumber type="integer">20160710</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse * anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an ( * ) ampersand -->
     <!-- Enter <DirectUrl nil="true /> or <HttpUrl nil="true /> to indicate you won't be using a type of URL -->
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
-  <DirectUrl><![CDATA[https://ota.renderserver.net/Alberto96/GearCM/Opti_CM13/Builds/Beta/cm-13.0-2015xxxx-UNOFFICIAL-GearCM-i9500.zip]]></DirectUrl>
-  <HttpUrl nil="true" />
+  <DirectUrl nil="true" />
+  <HttpUrl>https://www.androidfilehost.com/?fid=24591000424945760</HttpUrl>
   <!-- <HttpUrl>HTTP URL HERE</HttpUrl> -->
   <!-- What version are you issuing? -->
-  <Android>6.0.0</Android>
+  <Android>6.0.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
   <CheckMD5 nil="true" />
-  <CheckMD5>Placeholder</CheckMD5>
+  <CheckMD5>e7111752ef0c62f24a9c2d70e0646815</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
-  <FileSize type="integer">Placeholder</FileSize>
+  <FileSize type="integer">347263583</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
-  <Developer>GearCM: Alberto96, NBruderman</Developer>
+  <Developer>GearLabs: Alberto96</Developer>
   <!-- Your ROM or Developer Website. Can be a personal site or your XDA/forum thread -->
   <!-- OPTIONAL: Enter <Website nil="true" /> to hide this -->
-  <WebsiteURL>NEW THREAD REQUIRED</WebsiteURL>
+  <WebsiteURL>http://forum.xda-developers.com/galaxy-s4/i9500-orig-develop/gearcm-optimized-cyanogenmod-12-1-t3283820</WebsiteURL>
   <!-- Your Donate URL -->
   <!-- OPTIONAL: Enter <DonateURL nil="true" /> to hide this -->
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 2015xxxx
- * Placeholder
+  <Changelog>### Changelog 20160710
+ * Check XDA thread
 </Changelog>
 </ROM>
