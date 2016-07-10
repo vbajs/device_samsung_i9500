@@ -1,3 +1,6 @@
+# Mount debugfs on /sys/kernel/debug.
+allow init debugfs:dir mounton;
+
 # /dev/block/mmcblk0p[0-9]
 allow init emmcblk_device:blk_file rw_file_perms;
 
@@ -14,7 +17,6 @@ allow init sysfs:lnk_file setattr;
 allow init sysfs_mdnie_writable:lnk_file { read setattr };
 
 allow init cpboot-daemon_exec:file { read getattr open execute execute_no_trans };
-allow init debugfs:dir mounton;
 allow init device:chr_file { create unlink };
 allow init gps_device:chr_file { write ioctl };
 allow init init_exec:file execute_no_trans;
