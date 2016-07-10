@@ -6,5 +6,3 @@ init_daemon_domain(pvrsrvctl)
 allow pvrsrvctl self:capability sys_module;
 
 allow pvrsrvctl gpu_device:chr_file rw_file_perms;
-
-allow pvrsrvctl kernel:system module_request;

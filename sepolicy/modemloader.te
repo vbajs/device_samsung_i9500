@@ -7,6 +7,4 @@ init_daemon_domain(modemloader)
 
 allow modemloader proc:file r_file_perms;
 
-allow modemloader kernel:system module_request;
-
 set_prop(modemloader, modemloader_prop)

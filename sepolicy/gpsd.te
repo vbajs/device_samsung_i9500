@@ -19,5 +19,3 @@ allow gpsd gps_data_file:fifo_file { unlink create setattr getattr rw_file_perms
 allow gpsd sysfs_wake_lock:file rw_file_perms;
 
 allow gpsd sensorservice_service:service_manager { find };
-
-allow gpsd kernel:system module_request;

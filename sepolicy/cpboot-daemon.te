@@ -11,6 +11,8 @@ allow cpboot-daemon self:capability { dac_override setuid setgid };
 
 # FIXME neverallow rule
 # allow cpboot-daemon self:capability mknod;
+allow cpboot-daemon device:chr_file { ioctl create unlink };
+allow cpboot-daemon device:dir { write remove_name add_name };
 allow cpboot-daemon kernel:system syslog_read;
 allow cpboot-daemon cgroup:dir create_dir_perms;
 
@@ -29,6 +31,7 @@ allow cpboot-daemon block_device:dir r_dir_perms;
 
 # /dev/ehci_power
 allow cpboot-daemon sysfs_usb_power_writable:file rw_file_perms;
+allow cpboot-daemon usbfs:dir search;
 # /dev/mipi-lli/lli_control
 allow cpboot-daemon sysfs_mipi_writable:file rw_file_perms;
 

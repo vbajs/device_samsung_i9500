@@ -5,7 +5,7 @@ type sensorhubservice_exec, exec_type, file_type;
 
 allow sensorhubservice input_device:chr_file { read ioctl open };
 allow sensorhubservice input_device:dir { read open };
-allow sensorhubservice kernel:system module_request;
+allow sensorhubservice sensors_device:chr_file { read open };
 allow sensorhubservice servicemanager:binder { transfer call };
 allow sensorhubservice sysfs:file write;
 
