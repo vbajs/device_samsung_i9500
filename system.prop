@@ -25,7 +25,7 @@ ro.ota.manifest=https://raw.githubusercontent.com/GearCM/android_device_samsung_
 ro.ota.romname=GearCM13
 
 # ROM Version
-ro.ota.version=20160709
+ro.ota.version=20160710
 
 ## Radio ##
 
