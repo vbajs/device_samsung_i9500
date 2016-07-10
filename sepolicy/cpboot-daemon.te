@@ -10,7 +10,9 @@ unix_socket_connect(cpboot-daemon, property, init)
 allow cpboot-daemon self:capability { dac_override setuid setgid };
 
 # FIXME neverallow rule
+# allow cpboot-daemon device:chr_file { read write open };
 # allow cpboot-daemon self:capability mknod;
+# allow cpboot-daemon sysfs:file write;
 allow cpboot-daemon device:chr_file { ioctl create unlink };
 allow cpboot-daemon device:dir { write remove_name add_name };
 allow cpboot-daemon kernel:system syslog_read;

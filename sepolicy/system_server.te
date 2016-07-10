@@ -1,3 +1,6 @@
+# FIXME neverallow rule
+# allow system_app sysfs:file write;
+
 # /dev/mbin0
 allow system_server emmcblk_device:dir search;
 

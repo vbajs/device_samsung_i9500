@@ -3,6 +3,9 @@
 type sensorhubservice, domain;
 type sensorhubservice_exec, exec_type, file_type;
 
+# FIXME neverallow rule
+# allow sensorhubservice sensors_device:chr_file write;
+
 allow sensorhubservice input_device:chr_file { read ioctl open };
 allow sensorhubservice input_device:dir { read open };
 allow sensorhubservice sensors_device:chr_file { read open };
