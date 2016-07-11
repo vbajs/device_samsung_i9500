@@ -2,11 +2,11 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM 13</RomName>
-  <VersionName>20160710</VersionName>
+  <VersionName>20160711</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">20160710</VersionNumber>
+  <VersionNumber type="integer">20160711</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse * anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an ( * ) ampersand -->
@@ -14,17 +14,17 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <DirectUrl nil="true" />
-  <HttpUrl>https://www.androidfilehost.com/?fid=24591000424945760</HttpUrl>
+  <HttpUrl>https://www.androidfilehost.com/?fid=24591000424946159</HttpUrl>
   <!-- <HttpUrl>HTTP URL HERE</HttpUrl> -->
   <!-- What version are you issuing? -->
   <Android>6.0.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
   <CheckMD5 nil="true" />
-  <CheckMD5>e7111752ef0c62f24a9c2d70e0646815</CheckMD5>
+  <CheckMD5>4ca9ace2553056497db8bf1afa80bb71</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
-  <FileSize type="integer">347263583</FileSize>
+  <FileSize type="integer">347356015</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
   <Developer>GearLabs: Alberto96</Developer>
@@ -36,7 +36,9 @@
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 20160710
- * Check XDA thread
+  <Changelog>### Changelog 20160711
+ * Updated CM Sources
+ * Improved built-in Camera Latency with Flashlight
+ * KERNEL: Fixed Battery Capacity
 </Changelog>
 </ROM>
