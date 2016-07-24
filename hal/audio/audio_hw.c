@@ -1315,9 +1315,10 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
-    lock_all_outputs(adev);
+    
     if (ret >= 0) {
         val = atoi(value);
+	lock_all_outputs(adev);
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1363,9 +1364,10 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
                 start_bt_sco(adev);
             }
         }
-    }
-    unlock_all_outputs(adev, NULL);
+	unlock_all_outputs(adev, NULL);
 
+    }
+    
     str_parms_destroy(parms);
     return ret;
 }
@@ -1455,6 +1457,7 @@ static ssize_t out_write(struct audio_stream_out *stream, const void* buffer,
     if (out->standby) {
         pthread_mutex_unlock(&out->lock);
         lock_all_outputs(adev);
+	}
         if (!out->standby) {
             unlock_all_outputs(adev, out);
             goto false_alarm;
@@ -1466,7 +1469,7 @@ static ssize_t out_write(struct audio_stream_out *stream, const void* buffer,
         }
         out->standby = false;
         unlock_all_outputs(adev, out);
-    }
+    
 false_alarm:
 
     if (out->disabled) {
