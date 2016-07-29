@@ -36,10 +36,10 @@
       "branch": "cm-13.0"
     },
     {
-       "remote": "github",
-       "repository": "CyanogenMod/android_hardware_samsung_slsi-cm_openmax",
-        "target_path": "hardware/samsung_slsi-cm/openmax",
-        "branch": "cm-13.0"
+      "remote": "github",
+      "repository": "CyanogenMod/android_hardware_samsung_slsi-cm_openmax",
+      "target_path": "hardware/samsung_slsi-cm/openmax",
+      "branch": "cm-13.0"
     },
     {
       "remote": "github",
