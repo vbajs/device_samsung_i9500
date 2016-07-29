@@ -1,10 +1,10 @@
 $(call inherit-product, device/samsung/i9500/full_i9500.mk)
 
 # Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
+$(call inherit-product, vendor/turbo/config/nfc_enhanced.mk)
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/turbo/config/common_full_phone.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_MODEL=GT-I9500 \
