@@ -16,6 +16,17 @@ persist.sys.hdcp_checking=never
 # Reduce Debug Level
 nfc.app_log_level=0
 
+## OTA Updates ##
+
+# ROM Manifest
+ro.ota.manifest=https://raw.githubusercontent.com/GearCM/android_device_samsung_i9500/cm-13.0/ota.xml
+
+# ROM Name
+ro.ota.romname=GearCM13
+
+# ROM Version
+ro.ota.version=20160711
+
 ## Radio ##
 
 # Samsung RIL Config
