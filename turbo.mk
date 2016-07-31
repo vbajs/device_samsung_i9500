@@ -6,7 +6,11 @@ $(call inherit-product, vendor/turbo/config/nfc_enhanced.mk)
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/turbo/config/common_full_phone.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
+PROUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_MODEL=GT-I9500 \
     PRODUCT_NAME=ja3gxx \
     PRODUCT_DEVICE=ja3g \
