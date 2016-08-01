@@ -50,6 +50,7 @@ TARGET_CPU_VARIANT := cortex-a15
 # Kernel
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_CMDLINE := zcache msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.selinux=permissive
 TARGET_IGNORE_RO_BOOT_REVISION := true
 TARGET_KERNEL_CONFIG := cyanogenmod_i9500_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5410
