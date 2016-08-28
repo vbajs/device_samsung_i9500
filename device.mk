@@ -89,7 +89,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images
+    charger_res_images \
+    cm_charger_res_images
 
 # Display
 PRODUCT_PACKAGES += \
