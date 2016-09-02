@@ -46,5 +46,5 @@
       "repository": "GearOMNI/proprietary_vendor_samsung",
       "target_path": "vendor/samsung",
       "branch": "cm-13.0"
-     }
+    }
 ]
