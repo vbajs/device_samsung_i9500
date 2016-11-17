@@ -181,7 +181,7 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_INCLUDE_L_CRYPTO := true
 TW_MAX_BRIGHTNESS := 255
 TW_NO_EXFAT_FUSE := true
-TW_THEME := portrait_hdpi
+TW_THEME := portrait_mdpi
 
 # WiFi
 BOARD_HAVE_SAMSUNG_WIFI          := true
