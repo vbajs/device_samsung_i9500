@@ -168,6 +168,7 @@ BOARD_SEPOLICY_DIRS += \
     device/samsung/i9500/sepolicy
 
 # TWRP Specific
+RECOVERY_VARIANT := twrp
 BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
