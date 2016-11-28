@@ -304,6 +304,7 @@ typedef struct {
     char *          name;       /* Remote party name */
     int             namePresentation; /* 0=Allowed, 1=Restricted, 2=Not Specified/Unknown 3=Payphone */
     RIL_UUS_Info *  uusInfo;    /* NULL or Pointer to User-User Signaling Information */
+    int reserved;
 } RIL_Call;
 
 /* Deprecated, use RIL_Data_Call_Response_v6 */
