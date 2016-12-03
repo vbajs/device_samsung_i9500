@@ -2,7 +2,7 @@ Device configuration for Samsung Galaxy S4 Exynos (GT-I9500)
 
 Copyright 2016, The CyanogenMod Project / GearCM
 
-Current build version: 20160711 Stable
+Current build version: 20161203 Stable
 
 Actual Status:
 
