@@ -16,4 +16,9 @@
 
 #define PATH_WHITELIST_EXTRA_H \
     "/sys/devices/battery.26/power_supply/battery/batt_lp_charging", \
-    "/sys/devices/battery/power_supply/battery/batt_lp_charging",
+    "/sys/devices/battery/power_supply/battery/batt_lp_charging", \
+    "/sys/class/power_supply/battery/batt_lp_charging", \
+    "/dev/pvrsrvkm", \
+    "/dev/pvr_sync", \
+    "/dev/mobicore", \
+    "/dev/mobicore-user", \
