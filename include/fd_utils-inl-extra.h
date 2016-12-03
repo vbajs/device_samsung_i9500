@@ -21,4 +21,4 @@
     "/dev/pvrsrvkm", \
     "/dev/pvr_sync", \
     "/dev/mobicore", \
-    "/dev/mobicore-user", \
+    "/dev/mobicore-user",
