@@ -1,0 +1,4 @@
+r_dir_file(audioserver, sysfs)
+allow audioserver system_data_file:sock_file write;
+unix_socket_connect(audioserver, property, rild)
+allow audioserver  system_file:file execmod;

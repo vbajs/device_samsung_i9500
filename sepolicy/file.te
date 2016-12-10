@@ -13,9 +13,13 @@ type sensor_efs_file, file_type;
 type wifi_efs_file, file_type;
 
 ### sysfs types
+type proc_radio, fs_type;
+type sensors_efs_file, file_type;
+type sysfs_radio, fs_type, sysfs_type;
 type sysfs_mdnie_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_mipi_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_multipdp_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_usb_power_writable, fs_type, sysfs_type, mlstrustedobject;
 
 allow sysfs_type tmpfs:filesystem associate;
+type wpa_efs_file, file_type;

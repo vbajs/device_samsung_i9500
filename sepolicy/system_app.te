@@ -1,4 +1,7 @@
 allow system_app sysfs_mdnie_writable:{ file lnk_file } rw_file_perms;
 allow system_app sysfs_mdnie_writable:dir search;
+<<<<<<< HEAD
 
 allow system_app sensorhubservice:binder call;
+=======
+>>>>>>> 63f93ea... i9500: N selinux WIP

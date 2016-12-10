@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #### macloader
 #
 type macloader, domain;
@@ -28,3 +29,12 @@ allow macloader efs_file:dir r_dir_perms;
 # /efs/wifi/.mac.info
 allow macloader wifi_efs_file:dir r_dir_perms;
 allow macloader wifi_efs_file:file r_file_perms;
+=======
+type macloader, domain;
+type macloader_exec, exec_type, file_type;
+init_daemon_domain(macloader);
+allow macloader self:capability { dac_override chown fowner fsetid };
+allow macloader system_data_file:dir { add_name };
+allow macloader system_data_file:file { open };
+allow macloader system_file:file execmod;
+>>>>>>> 63f93ea... i9500: N selinux WIP

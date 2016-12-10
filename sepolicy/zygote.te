@@ -1,0 +1,7 @@
+allow zygote init:unix_stream_socket { listen accept setopt getopt getattr };
+allow zygote init:fifo_file { read };
+allow zygote activity_service:service_manager { find };
+allow zygote servicemanager:binder { call };
+allow zygote system_server:binder { call transfer };
+allow zygote input_device:dir r_dir_perms;
+allow zygote input_device:chr_file rw_file_perms;

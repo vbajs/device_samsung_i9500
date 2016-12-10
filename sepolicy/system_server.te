@@ -3,6 +3,19 @@
 
 # /dev/mbin0
 allow system_server emmcblk_device:dir search;
+allow system_server efs_file:dir search;
+allow system_server gps_data_file:dir rw_dir_perms;
+allow system_server gps_data_file:fifo_file create_file_perms;
+allow system_server sensors_efs_file:file r_file_perms;
+allow system_server uhid_device:chr_file rw_file_perms;
+allow system_server self:capability sys_module;
+allow system_server uhid_device:chr_file { read write ioctl open };
+allow system_server dex2oat_exec:file { read open getattr }; 
+allow system_server unlabeled:file unlink;
+allow system_server init:unix_stream_socket { getopt };
+allow system_server zygote:binder { call };
+allow system_server shell_prop:property_service { set };
+allow system_server system_file:file execmod;
 
 # /efs
 allow system_server efs_file:dir r_dir_perms;
