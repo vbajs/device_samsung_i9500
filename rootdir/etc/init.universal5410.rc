@@ -31,7 +31,53 @@ on post-fs
     chown system radio /sys/block/mmcblk0/bkops_en
     chmod 0664 /sys/block/mmcblk0/bkops_en
 
-# Set up kernel tracing, but disable it by default
+on post-fs-data
+    mkdir /data/media 0770 media_rw media_rw
+
+    mkdir /data/misc/radio 0775 radio system
+    mkdir /efs/imei 0775 radio system
+
+# Added for Mobicore
+    mkdir /data/app/mcRegistry 0775 system system
+
+# create data/gps for GPS daemon
+    mkdir /data/system/gps 771 gps system
+
+# fix permission for telephony
+    chmod 0644 /proc/cmdline
+
+# create camera directory
+    mkdir /data/camera 0700 media media
+
+# restore permissions for gps
+    mkdir /data/system 0775 system system
+
+# Broadcom NFC
+    mkdir /data/bcmnfc 0700 nfc nfc
+    mkdir /data/bcmnfc/param 0700 nfc nfc
+
+    # DivX DRM
+    mkdir /efs/.files 0775
+    mkdir /efs/.files/.dx1 0775 media system
+    mkdir /efs/.files/.dm33 0775 media system
+    mkdir /efs/.files/.mp301 0775 media system
+
+    # TZ Playready DRM
+    mkdir /efc/drm 0700 drm system
+    mkdir /efs/drm/playready 0775 drm system
+
+# SEAndroid Restore context for efs files
+    restorecon_recursive /efs
+
+#-----------------------------------------------------------------------
+
+on boot
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
+    # Reduce reserved lowmem from ~48MB to ~12MB
+    write /proc/sys/vm/lowmem_reserve_ratio "128 128"
+
+    # Set up kernel tracing, but disable it by default
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
     write /sys/kernel/debug/tracing/tracing_on 0
 
