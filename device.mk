@@ -103,11 +103,6 @@ PRODUCT_PACKAGES += \
     libion \
     libfimg
 
-# GearCM
-PRODUCT_PACKAGES += \
-    AdvancedDisplay \
-    OTAUpdates
-
 # GPS
 PRODUCT_PACKAGES += \
     libdmitry \
@@ -202,6 +197,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:system/bin/cbd
 
+# Samsung
 PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
