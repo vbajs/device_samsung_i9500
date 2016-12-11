@@ -213,3 +213,6 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
 WIFI_DRIVER_NVRAM_PATH           := "/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
+
+# inherit from the proprietary version
+-include vendor/samsung/i9500/BoardConfigVendor.mk
