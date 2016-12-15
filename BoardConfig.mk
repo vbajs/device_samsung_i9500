@@ -87,8 +87,9 @@ BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # CMHW
-BOARD_HARDWARE_CLASS := device/samsung/i9500/cmhw
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
+BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_HARDWARE_CLASS += device/samsung/i9500/cmhw
+BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
 # Exynos5410 Hardware
 BOARD_USE_ANB_OUTBUF_SHARE := true
@@ -168,15 +169,18 @@ BOARD_SEPOLICY_DIRS += \
     device/samsung/i9500/sepolicy
 
 # TWRP Specific
+RECOVERY_VARIANT := twrp
 BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_EXCLUDE_SUPERSU := true
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_INCLUDE_L_CRYPTO := true
+#TW_INCLUDE_L_CRYPTO := true
 TW_MAX_BRIGHTNESS := 255
 TW_NO_EXFAT_FUSE := true
 TW_THEME := portrait_hdpi
