@@ -1,50 +1,50 @@
 [
     {
       "remote": "github",
-      "repository": "CyanogenMod/android_external_stlport",
+      "repository": "LineageOS/android_external_stlport",
       "target_path": "external/stlport",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "CyanogenMod/android_hardware_samsung_slsi-cm_exynos",
+      "repository": "LineageOS/android_hardware_samsung_slsi-cm_exynos",
       "target_path": "hardware/samsung_slsi-cm/exynos",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "CyanogenMod/android_packages_apps_SamsungServiceMode",
+      "repository": "LineageOS/android_packages_apps_SamsungServiceMode",
       "target_path": "packages/apps/SamsungServiceMode",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "GearCM/android_kernel_samsung_exynos5410",
+      "repository": "dragonGR/android_kernel_samsung_exynos5410",
       "target_path": "kernel/samsung/exynos5410",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "CyanogenMod/android_hardware_samsung_slsi-cm_exynos5",
+      "repository": "LineageOS/android_hardware_samsung_slsi-cm_exynos5",
       "target_path": "hardware/samsung_slsi-cm/exynos5",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "GearCM/android_hardware_samsung_slsi-cm_exynos5410",
+      "repository": "dragonGR/android_hardware_samsung_slsi-cm_exynos5410",
       "target_path": "hardware/samsung_slsi-cm/exynos5410",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "CyanogenMod/android_hardware_samsung_slsi-cm_openmax",
+      "repository": "LineageOS/android_hardware_samsung_slsi-cm_openmax",
       "target_path": "hardware/samsung_slsi-cm/openmax",
-      "branch": "cm-13.0"
+      "branch": "cm-14.1"
     },
     {
       "remote": "github",
-      "repository": "Tempertet/vendor_samsung_i9500",
-      "target_path": "vendor/samsung/i9500",
-      "branch": "m"
+      "repository": "dragonGR/android_proprietary_vendor_samsung",
+      "target_path": "vendor/samsung",
+      "branch": "cm-14.1"
     }
 ]
