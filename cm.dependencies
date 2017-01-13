@@ -43,8 +43,8 @@
     },
     {
       "remote": "github",
-      "repository": "Tempertet/vendor_samsung_i9500",
-      "target_path": "vendor/samsung/i9500",
-      "branch": "m"
+      "repository": "TheMuppets/proprietary_vendor_samsung",
+      "target_path": "vendor/samsung",
+      "branch": "cm-13.0"
     }
 ]
